@@ -3,24 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaekkang <jaekkang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:11:26 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/09/07 14:12:22 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/10/18 13:31:07 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*ft_util(t_info *info)
+static char	*ft_util(char *line)
 {
-	info->idx = 0;
-	while (info->line[info->idx] != '\n' && info->line[info->idx] != '\0')
-		info->idx++;
-	if (info->line[info->idx] == '\0')
+	int	idx;
+
+	idx = 0;
+	while (line[idx] != '\n' && line[idx] != '\0')
+		idx++;
+	if (line[idx] == '\0')
 		return (NULL);
-	info->ret = ft_substr(info->line, info->idx + 1, \
-				ft_strlen(info->line) - info->idx);
+	ret = ft_substr(line, idx + 1, ft_strlen(line) - idx);
 	if (!info->ret)
 		return (NULL);
 	if (!info->ret[0])
@@ -33,46 +34,51 @@ static char	*ft_util(t_info *info)
 	return (info->ret);
 }
 
-static char	*ft_read_line(t_info *info)
+static char	*ft_read_line(char *buf, int fd)
 {
-	info->idx = 1;
-	while (info->idx)
+	int		idx;
+	char	*save;
+	char	*ret;
+
+	idx = 0;
+	while (idx)
 	{
-		info->idx = read(info->fd, info->buf, BUFFER_SIZE);
-		if (info->idx == -1)
+		idx = read(fd, buf, BUFFER_SIZE);
+		if (idx == -1)
 			return (NULL);
-		else if (info->idx == 0)
+		else if (idx == 0)
 			break ;
-		info->buf[info->idx] = '\0';
-		if (!info->save)
-			info->save = ft_strdup("");
-		info->ret = info->save;
-		info->save = ft_strjoin(info->ret, info->buf);
-		if (!info->save)
+		buf[idx] = '\0';
+		if (!save)
+			save = ft_strdup("");
+		ret = save;
+		save = ft_strjoin(ret, buf);
+		if (!save)
 			return (NULL);
-		free(info->ret);
-		info->ret = NULL;
-		if (ft_strchr(info->buf, '\n'))
+		free(ret);
+		ret = NULL;
+		if (ft_strchr(buf, '\n'))
 			break ;
 	}
-	return (info->save);
+	return (save);
 }
 
 char	*get_next_line(int fd)
 {
-	static t_info	info;
+	char	*buf;
+	char	*line;
+	char	*save;
 
-	info.fd = fd;
 	if (read(fd, NULL, 0) == -1)
 		return (NULL);
-	info.buf = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
-	if (!info.buf)
+	buf = (char *)malloc(sizeof(char) * BUFFER_SIZE);
+	if (!buf)
 		return (NULL);
-	info.line = ft_read_line(&info);
-	free(info.buf);
-	info.buf = NULL;
-	if (!info.line)
+	line = ft_read_line(buf, fd);
+	free(buf);
+	buf = NULL;
+	if (!line)
 		return (NULL);
-	info.save = ft_util(&info);
-	return (info.line);
+	// save = ft_util(&info);
+	return (line);
 }
