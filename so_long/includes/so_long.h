@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:20:12 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/17 18:18:41 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/10/19 16:12:22 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
+
 # include "../mlx/mlx.h"
 # include "../lib/libft.h"
+# include "../gnl/get_next_line.h"
 
 # define SUCCESS 1
 # define FAILE 0

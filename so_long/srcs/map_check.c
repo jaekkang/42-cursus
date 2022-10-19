@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:36:08 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/17 19:11:56 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/10/19 16:17:07 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,11 @@ int	check_map_player(t_game *game)
 	if (game->map.info.player == 0)
 	{
 		printf("Error\nCan't find player!\n");
+		ret = FAILE;
+	}
+	else if (game->map.info.player > 1)
+	{
+		printf("Error\nThere are more than 2 players on the map!\n");
 		ret = FAILE;
 	}
 	return (ret);
