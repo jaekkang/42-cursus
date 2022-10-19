@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:29:18 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/17 19:27:42 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/10/19 19:16:15 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ void	map_load(t_game *game)
 	game->map.h = 0;
 	fd = open_map_file(game->map.name);
 	line = get_next_line(fd);
+	if (!line)
+	{
+		printf("Error\nUnable to read map file.\n");
+		exit(EXIT_FAILURE);
+	}
 	game->win_w = (ft_strlen(line) - 1) * 64;
 	game->map.w = ft_strlen(line) - 1;
 	game->map.line = line;
