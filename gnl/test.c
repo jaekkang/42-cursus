@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 16:23:13 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/11 16:25:20 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:37:06 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 
 int	main(void)
 {
-	int	fd;
-	char *str;
-	
+	int		fd;
+	char	*str;
+
 	fd = open("test", O_RDONLY);
+	printf("start test\n");
 	str = get_next_line(fd);
 	printf("%s\n", str);
 }

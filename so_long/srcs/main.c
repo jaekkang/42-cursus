@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:50:28 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/20 14:51:34 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/10/20 16:17:03 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int ac, char **av)
 		if (!check_map_extension(av[1]))
 		{
 			printf("Error\nUsage : ./so_long [MAP_FILE.ber]\n");
-			return (EXIT_FAILURE);
+			exit(EXIT_FAILURE);
 		}
 		so_long(game);
 		free(game);

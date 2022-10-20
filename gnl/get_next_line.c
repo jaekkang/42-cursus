@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:11:26 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/18 13:31:07 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:40:38 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static char	*ft_util(char *line)
 {
-	int	idx;
+	char	*ret;
+	int		idx;
 
 	idx = 0;
 	while (line[idx] != '\n' && line[idx] != '\0')
@@ -22,33 +23,34 @@ static char	*ft_util(char *line)
 	if (line[idx] == '\0')
 		return (NULL);
 	ret = ft_substr(line, idx + 1, ft_strlen(line) - idx);
-	if (!info->ret)
+	if (!ret)
 		return (NULL);
-	if (!info->ret[0])
+	if (!ret[0])
 	{
-		free(info->ret);
-		info->ret = NULL;
+		free(ret);
+		ret = NULL;
 		return (NULL);
 	}
-	info->line[info->idx + 1] = '\0';
-	return (info->ret);
+	line[idx + 1] = '\0';
+	return (ret);
 }
 
 static char	*ft_read_line(char *buf, int fd)
 {
-	int		idx;
 	char	*save;
 	char	*ret;
+	int		idx;
 
 	idx = 0;
 	while (idx)
 	{
 		idx = read(fd, buf, BUFFER_SIZE);
+		printf("%s\n", buf);
+		printf("idx : %d\n", idx);
 		if (idx == -1)
 			return (NULL);
 		else if (idx == 0)
 			break ;
-		buf[idx] = '\0';
 		if (!save)
 			save = ft_strdup("");
 		ret = save;
@@ -75,10 +77,11 @@ char	*get_next_line(int fd)
 	if (!buf)
 		return (NULL);
 	line = ft_read_line(buf, fd);
+	printf("%s\n", line);
 	free(buf);
 	buf = NULL;
 	if (!line)
 		return (NULL);
-	// save = ft_util(&info);
+	save = ft_util(line);
 	return (line);
 }

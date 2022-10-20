@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:36:08 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/19 16:17:07 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/10/20 16:17:29 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,12 @@ int	check_map_extension(char *filename)
 	int	len;
 
 	len = ft_strlen(filename) - 1;
-	if (filename[len - 3] != '.' || filename[len - 2] != 'b' \
+	if (len < 4)
+	{
+		printf("Error\nThis is not a valid file name.\n");
+		exit(FAILE);
+	}
+	else if (filename[len - 3] != '.' || filename[len - 2] != 'b' \
 		|| filename[len - 1] != 'e' || filename[len] != 'r' )
 		return (FAILE);
 	return (SUCCESS);
