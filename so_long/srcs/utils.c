@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 13:48:28 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/17 18:35:16 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/10/21 13:46:03 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,6 @@ char	*strjoin_del_nl(char *s1, char *s2)
 	free(s1);
 	free(s2);
 	return (ret);
-}
-
-void	is_ber_file(char *filename)
-{
-	int	len;
-
-	len = ft_strlen(filename) - 1;
-	if ((filename[len - 3] != '.') || (filename[len - 2] != 'b')
-		|| (filename[len - 1] != 'e') || (filename[len] != 'r'))
-		printf("error map : wrong file name");
 }
 
 int	strchr_ri(const char *s, int c)

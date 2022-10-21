@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:28:55 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/17 19:09:49 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/10/21 13:50:07 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,17 @@ static void	map_data_init(t_game *game)
 	game->map.img.ground = mlx_xpm_file_to_image(game->mlx, \
 			"./asset/objects/ground.xpm", &game->map.img.w, &game->map.img.h);
 	game->map.img.wall = mlx_xpm_file_to_image(game->mlx, \
-			"./asset/objects/wall.xpm", &game->map.img.w, &game->map.img.h);
+			"./asset/objets/wall.xpm", &game->map.img.w, &game->map.img.h);
 	game->map.img.itembox = mlx_xpm_file_to_image(game->mlx, \
 			"./asset/objects/itembox.xpm", &game->map.img.w, &game->map.img.h);
 	game->map.img.exit = mlx_xpm_file_to_image(game->mlx, \
 			"./asset/objects/exit.xpm", &game->map.img.w, &game->map.img.h);
+	if (game->map.img.exit == 0 || game->map.img.ground == 0 \
+		|| game->map.img.wall == 0 || game->map.img.itembox == 0)
+	{
+		printf("Error\nCan't load the image (this is Invalid Path)\n");
+		exit(EXIT_FAILURE);
+	}
 	if (!map_is_valid(game))
 		exit(EXIT_FAILURE);
 }
@@ -62,6 +68,12 @@ static void	chac_data_init(t_game *game)
 			"./asset/character/std_left.xpm", &game->chac.w, &game->chac.h);
 	game->chac.img.r = mlx_xpm_file_to_image(game->mlx, \
 			"./asset/character/std_right.xpm", &game->chac.w, &game->chac.h);
+	if (game->chac.img.d == 0 || game->chac.img.l == 0 || game->chac.img.r == 0 \
+		|| game->chac.img.u == 0)
+	{
+		printf("Error\nCan't load the image (this is Invalid Path)\n");
+		exit(EXIT_FAILURE);
+	}
 }
 
 void	so_long_init(t_game *game)
