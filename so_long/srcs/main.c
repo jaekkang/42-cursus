@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:50:28 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/21 16:16:11 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/10/21 16:31:00 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,15 @@ void	so_long(t_game *game)
 	mlx_hook(game->win, X_EVENT_KEY_EXIT, 0, &exit_game, game);
 	mlx_loop(game->mlx);
 }
+void	f(void)
+{
+	system("leaks so_long");
+}
 
 int	main(int ac, char **av)
 {
 	t_game	*game;
-
+	atexit(f);
 	game = (t_game *)malloc(sizeof(t_game));
 	if (ac == 2 && game)
 	{

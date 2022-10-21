@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:29:18 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/21 16:29:17 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/10/21 17:14:29 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,5 @@ void	mapping(t_game *game)
 	if (game->map.line[game->c.y * game->map.w / 64 \
 		+ game->c.x / 64] == 'E' && game->map.info.col == 0)
 		exit(EXIT_SUCCESS);
+	mlx_string_put(game->mlx, game->win, 2 * 64, 1 * 64, 999999, ft_itoa2(game->c.move, game));
 }

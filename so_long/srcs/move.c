@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:27:32 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/21 16:16:47 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/10/21 16:40:19 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,6 @@ int	key_press(int key_code, t_game *game)
 		exit(EXIT_SUCCESS);
 	}
 	mapping(game);
-	mlx_string_put(game->mlx, game->win, 2 * 64, 1 * 64, 999999, \
-			ft_itoa(game->c.move));
 	chac_draw(game);
 	return (0);
 }

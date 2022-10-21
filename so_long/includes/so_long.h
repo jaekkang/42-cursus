@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:20:12 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/21 16:15:39 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/10/21 16:37:53 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct s_game {
 	t_chac		c;
 	int			win_w;
 	int			win_h;
+	char		*mt;
 }				t_game;
 
 char	*get_next_line(int fd);
@@ -101,4 +102,6 @@ int		check_map_player(t_game *game);
 int		check_map_extension(char *filename);
 int		check_map_wall(t_game *game);
 int		check_map_object(t_game *game);
+char	*ft_itoa2(int n, t_game *game);
+
 #endif

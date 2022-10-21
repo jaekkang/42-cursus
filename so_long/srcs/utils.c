@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 13:48:28 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/21 16:28:55 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/10/21 17:14:30 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,51 @@ int	strchr_ri(const char *s, int c)
 	if (s[i] == (char)c)
 		return (i);
 	return (0);
+}
+
+static size_t	ft_count_number(int n)
+{
+	size_t	len;
+
+	if (n == 0)
+		return (1);
+	len = 0;
+	if (n < 0)
+		len++;
+	while (n)
+	{
+		n /= 10;
+		len++;
+	}
+	return (len);
+}
+
+char	*ft_itoa2(int n, t_game *game)
+{
+	char	*ret;
+	size_t	len;
+	size_t	i;
+
+	len = ft_count_number(n);
+	i = 0;
+	ret = (char *)malloc(sizeof(char) * len + 1);
+	if (!ret)
+		return (0);
+	ret[len] = '\0';
+	if (n < 0)
+	{
+		ret[0] = '-';
+		i = 1;
+	}
+	while (len-- > i)
+	{
+		if (n < 0)
+			ret[len] = n % 10 * -1 + '0';
+		else
+			ret[len] = n % 10 + '0';
+		n /= 10;
+	}
+	game->mt = ret;
+	free(ret);
+	return (game->mt);
 }
