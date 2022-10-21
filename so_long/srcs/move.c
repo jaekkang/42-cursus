@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
+/*   By: gape <gape@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:27:32 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/17 19:18:24 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/10/21 15:39:43 by gape             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ int	key_press(int key_code, t_game *game)
 		exit(EXIT_SUCCESS);
 	}
 	mapping(game);
+	mlx_string_put(game->mlx, game->win, 2 * 64, 1 * 64, 999999, \
+			ft_itoa(game->chac.move));
 	chac_draw(game);
 	return (0);
 }

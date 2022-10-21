@@ -39,7 +39,7 @@ static void	map_data_init(t_game *game)
 	game->map.img.ground = mlx_xpm_file_to_image(game->mlx, \
 			"./asset/objects/ground.xpm", &game->map.img.w, &game->map.img.h);
 	game->map.img.wall = mlx_xpm_file_to_image(game->mlx, \
-			"./asset/objets/wall.xpm", &game->map.img.w, &game->map.img.h);
+			"./asset/objects/wall.xpm", &game->map.img.w, &game->map.img.h);
 	game->map.img.itembox = mlx_xpm_file_to_image(game->mlx, \
 			"./asset/objects/itembox.xpm", &game->map.img.w, &game->map.img.h);
 	game->map.img.exit = mlx_xpm_file_to_image(game->mlx, \
