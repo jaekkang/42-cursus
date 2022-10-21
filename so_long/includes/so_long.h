@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:20:12 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/19 16:12:22 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/10/21 16:15:39 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ typedef struct s_chac_img {
 	void	*d;
 	void	*l;
 	void	*r;
+	void	*l2;
+	void	*r2;
 }	t_chac_img;
 
 typedef struct s_chac
@@ -80,7 +82,7 @@ typedef struct s_game {
 	void		*mlx;
 	void		*win;
 	t_map		map;
-	t_chac		chac;
+	t_chac		c;
 	int			win_w;
 	int			win_h;
 }				t_game;
