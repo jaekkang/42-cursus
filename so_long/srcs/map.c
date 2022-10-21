@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gape <gape@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:29:18 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/21 15:39:01 by gape             ###   ########.fr       */
+/*   Updated: 2022/10/21 16:29:17 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	mapping(t_game *game)
 								game->map.img.exit, wid * 64, hei * 64);
 		}
 	}
-	if (game->map.line[game->chac.y * game->map.w / 64 \
-		+ game->chac.x / 64] == 'E' && game->map.info.col == 0)
+	if (game->map.line[game->c.y * game->map.w / 64 \
+		+ game->c.x / 64] == 'E' && game->map.info.col == 0)
 		exit(EXIT_SUCCESS);
 }
