@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:12:40 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/19 16:12:16 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/10/24 15:54:31 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
+
+# include <stdlib.h>
+# include <unistd.h>
+# include "../lib/libft.h"
 
 typedef struct s_info {
 	char	*buf;

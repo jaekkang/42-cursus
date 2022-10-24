@@ -6,7 +6,7 @@
 #    By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/23 11:49:24 by jaekkang          #+#    #+#              #
-#    Updated: 2022/10/24 15:42:45 by jaekkang         ###   ########.fr        #
+#    Updated: 2022/10/24 15:52:01 by jaekkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,6 +98,7 @@ $(NAME_BONUS): $(OBJS_BONUS)
 
 clean :
 	@rm -rf ./objs
+	@rm -rf ./objs_bonus
 	@make clean -C lib
 	@make clean -C gnl
 	@echo "${RED}[CLEAN]${RST} done"
