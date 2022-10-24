@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
+/*   By: jaekkang <jaekkang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 07:51:39 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/24 16:18:50 by jaekkang         ###   ########.fr       */
+/*   Created: 2022/07/11 14:49:19 by jaekkang          #+#    #+#             */
+/*   Updated: 2022/07/11 17:31:04 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/pipex.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	(void)ac;
-	return (0);
+	t_list	*res;
+
+	if (lst == NULL || del == NULL)
+		return ;
+	while (*lst != NULL)
+	{
+		res = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = res;
+	}
+	*lst = NULL;
 }

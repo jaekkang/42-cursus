@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
+/*   By: jaekkang <jaekkang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 07:51:39 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/24 16:18:50 by jaekkang         ###   ########.fr       */
+/*   Created: 2022/07/11 14:23:06 by jaekkang          #+#    #+#             */
+/*   Updated: 2022/07/12 21:04:31 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/pipex.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+t_list	*ft_lstlast(t_list *lst)
 {
-	(void)ac;
-	return (0);
+	if (lst == NULL)
+		return (lst);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }

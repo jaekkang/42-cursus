@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
+/*   By: jaekkang <jaekkang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 07:51:39 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/24 16:18:50 by jaekkang         ###   ########.fr       */
+/*   Created: 2022/07/11 13:43:24 by jaekkang          #+#    #+#             */
+/*   Updated: 2022/07/12 20:29:59 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/pipex.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+t_list	*ft_lstnew(void *content)
 {
-	(void)ac;
-	return (0);
+	t_list	*ret_list;
+
+	ret_list = (t_list *)malloc(sizeof(t_list));
+	if (!ret_list)
+		return (0);
+	ret_list->next = NULL;
+	ret_list->content = content;
+	return (ret_list);
 }

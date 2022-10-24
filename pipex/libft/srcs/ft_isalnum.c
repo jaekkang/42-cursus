@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
+/*   By: jaekkang <jaekkang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 07:51:39 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/24 16:18:50 by jaekkang         ###   ########.fr       */
+/*   Created: 2022/07/06 16:37:01 by jaekkang          #+#    #+#             */
+/*   Updated: 2022/07/08 10:26:13 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/pipex.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+int	ft_isalnum(int c)
 {
-	(void)ac;
-	return (0);
+	return (ft_isdigit(c) || ft_isalpha(c));
 }

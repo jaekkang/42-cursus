@@ -6,7 +6,7 @@
 #    By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/18 07:49:32 by jaekkang          #+#    #+#              #
-#    Updated: 2022/10/18 07:57:10 by jaekkang         ###   ########.fr        #
+#    Updated: 2022/10/24 16:20:35 by jaekkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,17 +17,22 @@ CC = cc
 
 SRCS = main.c
 
+INC = -I./includes/
+
 OBJ = ${SRCS:.c=.o}
 
 ${NAME} : ${OBJ}
-	@${CC} ${FLAGE} ${OBJ} -o ${NAME}
+	@make -C ./libft all
+	@${CC} ${FLAGE} ${INC} ${OBJ} -o ${NAME}
 
 all : ${NAME}
 	@./${NAME}
 
 clean :
+	@make -C ./libft clean
 	@rm -rf ${OBJ}
 fclean : clean
+	@make -C ./libft fclean
 	@rm -f ${NAME}
 
 re :
