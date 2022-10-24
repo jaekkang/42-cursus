@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:50:28 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/24 15:14:35 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/10/24 15:19:36 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes_bonus/so_long_bonus.h"
 
 int	exit_game(t_game *game)
 {
@@ -21,6 +21,7 @@ int	exit_game(t_game *game)
 void	so_long(t_game *game)
 {
 	so_long_init(game);
+	mlx_string_put(game->mlx, game->win, 2 * 64, 1 * 64, 999999, "0");
 	mapping(game);
 	chac_draw(game);
 	mlx_hook(game->win, 2, 0, &key_press, game);

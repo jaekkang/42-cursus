@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move.c                                             :+:      :+:    :+:   */
+/*   move_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:27:32 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/24 14:24:08 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/10/24 15:19:27 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes_bonus/so_long_bonus.h"
 
 static void	move_up(t_game *game, int coor)
 {

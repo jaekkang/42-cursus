@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:20:12 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/24 15:16:57 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/10/24 15:17:28 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include <fcntl.h>
 # include <stdio.h>
@@ -104,5 +104,6 @@ int		check_map_player(t_game *game);
 int		check_map_extension(char *filename);
 int		check_map_wall(t_game *game);
 int		check_map_object(t_game *game);
+char	*ft_itoa2(int n, t_game *game);
 
 #endif
