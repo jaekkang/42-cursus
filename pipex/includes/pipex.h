@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:15:35 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/11/03 23:02:01 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/11/04 01:02:08 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <string.h>
 
 # define BUFSIZE 1024
+# define E2BIG	7
 
 typedef struct s_data
 {
@@ -43,5 +44,6 @@ typedef struct s_data
 
 void	find_path(t_data *data);
 void	parse_data(t_data *data, int ac, char **av, char **envp);
+void	print_errmsg_n_exit(int err, char *msg);
 
 #endif

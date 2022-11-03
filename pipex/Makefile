@@ -6,7 +6,7 @@
 #    By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/18 07:49:32 by jaekkang          #+#    #+#              #
-#    Updated: 2022/11/03 22:34:25 by jaekkang         ###   ########.fr        #
+#    Updated: 2022/11/04 00:41:43 by jaekkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ INC = -I./includes/
 SRC = \
 	main.c \
 	parse.c \
+	error.c \
 	
 SRCS = $(addprefix $(SRCS_DIR), $(SRC))
 OBJ = ${SRCS:.c=.o}
