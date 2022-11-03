@@ -112,4 +112,12 @@ dup 함수는 fd로 전달받은 파일 서술자를 복제하여 반환, dup가
 
 dup2 서술자의 fd값을 fd2 지정합니다. 만일 fd2가 이미 열려있으면 fd2를 닫은 후 복제가 됩니다. 역시 성공시 새 파일 서술자, 오류시 -1을 반환합니다 </br>
 
+# execvp 함수
+> execvp()는 PATH에 등록된 디렉토리에 있는 프로그램을 실행합니다. exec 함수는 다른 프로그램을 실행하고 자신은 종료합니다.. </br>
+
+> 헤더: unistd.h </br>
+> 형태: int execvp( const char *path, char *const argv[]) </br>
+> 인수: char *path 실행 파일의 디레토리 포함 전체 파일 명 </br>
+> char *argv[] 인수 목록 </br>
+> 반환: 실패일 때만 -1 </br>
 
