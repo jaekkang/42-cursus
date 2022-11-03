@@ -6,7 +6,7 @@
 #    By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/18 07:49:32 by jaekkang          #+#    #+#              #
-#    Updated: 2022/11/02 16:32:00 by jaekkang         ###   ########.fr        #
+#    Updated: 2022/11/03 22:34:25 by jaekkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,9 @@ OBJ_DIR = ./objs/
 INC = -I./includes/
 
 SRC = \
-	main.c\
-
+	main.c \
+	parse.c \
+	
 SRCS = $(addprefix $(SRCS_DIR), $(SRC))
 OBJ = ${SRCS:.c=.o}
 OBJS = $(addprefix $(OBJ_DIR), $(OBJ))
