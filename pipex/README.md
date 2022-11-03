@@ -96,3 +96,20 @@ wait과의 차이는 자식프로세스가 종료될 때 까지 차단되는 것
 > int pipe(int fd[2]); </br>
 > return : 성공시 0, 실패시 -1 </br>
 > 인자 fd는 2개의 원소가 있는 배열임 fd[0] 읽기용 fd[1]은 쓰기용 </br>
+> int pipe(int fd[2]); </br>
+
+# dup 함수
+
+> #include <unistd.h>
+> int dup(inf fd);
+
+dup 함수는 fd로 전달받은 파일 서술자를 복제하여 반환, dup가 돌려주는 fd는 가장 낮은 서술자를 반환
+
+# dup2 함수
+
+> #include <unistd.h>
+> int dup2(int fd, int fd2)
+
+dup2 서술자의 fd값을 fd2 지정합니다. 만일 fd2가 이미 열려있으면 fd2를 닫은 후 복제가 됩니다. 역시 성공시 새 파일 서술자, 오류시 -1을 반환합니다 </br>
+
+
