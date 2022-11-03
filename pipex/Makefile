@@ -6,41 +6,50 @@
 #    By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/18 07:49:32 by jaekkang          #+#    #+#              #
-#    Updated: 2022/10/25 15:12:27 by jaekkang         ###   ########.fr        #
+#    Updated: 2022/11/02 16:32:00 by jaekkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
-FLAGE = -Wall -Wextra -Werror
-
-LIB_FLAGE = -Llibft -lft
 
 CC = cc
+FLAGE = -Wall -Wextra -Werror
+LIB_FLAGE = -Llibft -lft
 
-SRCS = \
-	main.c\
+SRC_DIR = ./srcs/
+
+OBJ_DIR = ./objs/
 
 INC = -I./includes/
 
-.o.c: ${NAME}
-	${CC} ${FLAGE} ${INC} -c $< -o $@
+SRC = \
+	main.c\
 
-${NAME} : ${OBJ}
-	@make -C libft
-	@${CC} ${LIB_FLAGE} $@ -o $^
+SRCS = $(addprefix $(SRCS_DIR), $(SRC))
+OBJ = ${SRCS:.c=.o}
+OBJS = $(addprefix $(OBJ_DIR), $(OBJ))
 
 all : ${NAME}
 
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR) srcs
+	@$(CC) $(FLAG) ${INC} -c $< -o $@
+
+$(NAME): $(OBJS)
+	@make -C libft
+	$(CC)  $(LIB_FLAGE) ${OBJS} -o ${NAME}
+
 clean :
-	@make -C ./libft clean
-	@rm -rf ${OBJ}
+	@make clean -C libft 
+	@rm -rf ${OBJ_DIR}
 	
 fclean : clean
-	@make -C ./libft fclean
+	@make fclean -C libft
 	@rm -f ${NAME}
 
 re :
 	@make fclean
 	@make all
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re bonus
