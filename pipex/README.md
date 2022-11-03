@@ -60,3 +60,30 @@ open() > 리눅스 제공</br>
 > 인수 : 파일 디스크립터 (int) </br>
 > 반환 : 0 == 정상, -1 == close 실패 </br>
 
+# read 함수
+
+> open() 함수로 열기한 파일의 내용을 읽기 합니다. </br>
+> ssize_t read (int fd, void *buf, size_t nbytes) </br>
+> 인수 : fd (int) , buf (파일을 읽어 들일 버퍼), nbytes (버퍼의 크기) </br>
+
+> 리턴 : ssize_t == -1 실패 , ret == 0 > 정상적으로 실행되었다면 읽어들인 바이트 수 </br>
+
+# wait 함수
+
+> 부모 프로세스가 fork()함수를 사용하여 자식 프로세스를 생성하였을 떄, fork()함수가 리턴되는 시점부터 2개의 프로세스가 동작하게 됩니다.</br>
+부모 프로세스가 자식 프로세스의 종료 상태를 얻기 위해서는 wait()함수를 사용합니다. </br>
+
+> #include <sys/wait.h> </br>
+> pid_t wait(int *static) </br>
+> return : 성공시 프로세스 id 반환, 오류시 -1 </br>
+
+
+# waitpid 함수
+
+waitpid 함수는 wait 함수처럼 자식 프로세스를 기다릴때 사용하는 함수, 자식 프로세스의 종료 상태를 회수할 때 사용. </br>
+wait과의 차이는 자식프로세스가 종료될 때 까지 차단되는 것을 원하지 않을 경우, 옵션을 사용하여 차단을 방지할 수있음. </br>
+그리고 기다릴 자식 프로세스를 좀더 상세히 지정가능 </br>
+
+> #include <sys/wait.h> </br>
+> pid_t waitpid(pid_t pid, int *static, int options) </br>
+> return : 성공시 ID, 오류시 -1 </br>
