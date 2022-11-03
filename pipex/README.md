@@ -18,4 +18,11 @@
 파일열기에는 표준 함수인 fopen()이 있음.</br> fopen > C 표준 </br>
 open() > 리눅스 제공</br>
 
-> #include <fcntl.h>
+> #include <fcntl.h> </br>
+> int open (const char *FILENAME, int FLAGS[, mod_t MODE]) </br>
+인수 </br>
+> FILENAME : 대상 파일 이름 </br>
+> FLAGS : 파일에 대한 열기 옵션 </br>
+> [, mod_t MODE] O_CREATE : 옵션 사용에 의해 파일이 생성될 떄 지정되는 파일 접근 권한 </br>
+
+> return > int 0 : 성공하면 fd값 리턴 , </br> -1 == 실패 </br>
