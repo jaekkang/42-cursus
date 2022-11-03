@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 07:51:39 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/11/04 01:28:28 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/11/04 03:34:00 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,19 @@ void	work_parent_process(t_data *data)
 		print_errmsg_n_exit(1, "Error\nexecve() fail\n");
 }
 
+static void	join_args(t_data *data)
+{
+	int		i;
+	char	*ret;
+
+	i = 1;
+	while (data->cmd1[i])
+	{
+		ret = ft_strjoin(ret, data->cmd1[i]);
+		i++;
+	}
+}
+
 void	work_child_process(t_data *data)
 {
 	int	i;
@@ -50,6 +63,9 @@ void	work_child_process(t_data *data)
 	dup2(data->in_fd, STDIN_FILENO);
 	dup2(data->fd[1], STDOUT_FILENO);
 	close(data->fd[0]);
+	if (ft_strncmp(data->cmd1[0], "awk", 3) == 0 \
+		|| ft_strncmp(data->cmd1[0], "grep", 4) == 0)
+		join_args(data);
 	if (execve(data->cmd1_path, data->cmd1, data->ep) == -1)
 		print_errmsg_n_exit(1, "Error\nexecve() fail\n");
 }
