@@ -6,14 +6,15 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 21:53:56 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/19 16:12:41 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/10/24 15:54:59 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include "../includes/so_long.h"
+# include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_list
 {

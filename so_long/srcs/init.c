@@ -6,7 +6,11 @@
 /*   By: gape <gape@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:28:55 by jaekkang          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/10/25 13:48:02 by gape             ###   ########.fr       */
+=======
+/*   Updated: 2022/10/24 15:14:27 by jaekkang         ###   ########.fr       */
+>>>>>>> ac3a435504a69f795432a2dbb687de7cf8101d1c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +38,7 @@ static void	map_count_object(t_game *game)
 
 static void	map_data_init(t_game *game)
 {
-	game->chac.move = 0;
+	game->c.move = 0;
 	map_count_object(game);
 	game->map.img.ground = mlx_xpm_file_to_image(game->mlx, \
 			"./asset/objects/ground.xpm", &game->map.img.w, &game->map.img.h);
@@ -56,20 +60,24 @@ static void	map_data_init(t_game *game)
 
 static void	chac_data_init(t_game *game)
 {
-	game->chac.x = (strchr_ri(game->map.line, 'P') % game->map.w) * 64;
-	game->chac.y = (strchr_ri(game->map.line, 'P') / game->map.w) * 64;
-	game->chac.move = 0;
-	game->chac.pos = 'L';
-	game->chac.img.u = mlx_xpm_file_to_image(game->mlx, \
-			"./asset/character/std_right.xpm", &game->chac.w, &game->chac.h);
-	game->chac.img.d = mlx_xpm_file_to_image(game->mlx, \
-			"./asset/character/std_right.xpm", &game->chac.w, &game->chac.h);
-	game->chac.img.l = mlx_xpm_file_to_image(game->mlx, \
-			"./asset/character/std_left.xpm", &game->chac.w, &game->chac.h);
-	game->chac.img.r = mlx_xpm_file_to_image(game->mlx, \
-			"./asset/character/std_right.xpm", &game->chac.w, &game->chac.h);
-	if (game->chac.img.d == 0 || game->chac.img.l == 0 || game->chac.img.r == 0 \
-		|| game->chac.img.u == 0)
+	game->c.x = (strchr_ri(game->map.line, 'P') % game->map.w) * 64;
+	game->c.y = (strchr_ri(game->map.line, 'P') / game->map.w) * 64;
+	game->c.move = 0;
+	game->c.pos = 'L';
+	game->c.img.u = mlx_xpm_file_to_image(game->mlx, \
+			"./asset/character/up.xpm", &game->c.w, &game->c.h);
+	game->c.img.d = mlx_xpm_file_to_image(game->mlx, \
+			"./asset/character/down.xpm", &game->c.w, &game->c.h);
+	game->c.img.l = mlx_xpm_file_to_image(game->mlx, \
+			"./asset/character/left.xpm", &game->c.w, &game->c.h);
+	game->c.img.r = mlx_xpm_file_to_image(game->mlx, \
+			"./asset/character/right.xpm", &game->c.w, &game->c.h);
+	game->c.img.l2 = mlx_xpm_file_to_image(game->mlx, \
+			"./asset/character/left2.xpm", &game->c.w, &game->c.h);
+	game->c.img.r2 = mlx_xpm_file_to_image(game->mlx, \
+			"./asset/character/right2.xpm", &game->c.w, &game->c.h);
+	if (game->c.img.d == 0 || game->c.img.l == 0 || game->c.img.r == 0 \
+		|| game->c.img.u == 0 || game->c.img.l2 == 0 || game->c.img.r2 == 0)
 	{
 		printf("Error\nCan't load the image (this is Invalid Path)\n");
 		exit(EXIT_FAILURE);

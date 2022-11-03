@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gape <gape@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:27:32 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/21 15:39:43 by gape             ###   ########.fr       */
+/*   Updated: 2022/10/24 14:24:08 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ static void	move_up(t_game *game, int coor)
 			game->map.info.col--;
 			printf("number of boxes left : %d\n", game->map.info.col);
 		}
-		game->chac.y -= 64;
-		game->chac.pos = 'U';
-		game->chac.move++;
-		printf("current number of steps taken : %d\n", game->chac.move);
+		game->c.y -= 64;
+		game->c.pos = 'U';
+		game->c.move++;
+		printf("current number of steps taken : %d\n", game->c.move);
 	}
 }
 
@@ -39,10 +39,10 @@ static void	move_down(t_game *game, int coor)
 			game->map.info.col--;
 			printf("number of boxes left : %d\n", game->map.info.col);
 		}
-		game->chac.y += 64;
-		game->chac.pos = 'D';
-		game->chac.move++;
-		printf("current number of steps taken : %d\n", game->chac.move);
+		game->c.y += 64;
+		game->c.pos = 'D';
+		game->c.move++;
+		printf("current number of steps taken : %d\n", game->c.move);
 	}
 }
 
@@ -56,10 +56,10 @@ static void	move_left(t_game *game, int coor)
 			game->map.info.col--;
 			printf("number of boxes left : %d\n", game->map.info.col);
 		}
-		game->chac.x -= 64;
-		game->chac.pos = 'L';
-		game->chac.move++;
-		printf("current number of steps taken : %d\n", game->chac.move);
+		game->c.x -= 64;
+		game->c.pos = 'L';
+		game->c.move++;
+		printf("current number of steps taken : %d\n", game->c.move);
 	}
 }
 
@@ -73,10 +73,10 @@ static void	move_right(t_game *game, int coor)
 			game->map.info.col--;
 			printf("number of boxes left : %d\n", game->map.info.col);
 		}
-		game->chac.x += 64;
-		game->chac.pos = 'R';
-		game->chac.move++;
-		printf("current number of steps taken : %d\n", game->chac.move);
+		game->c.x += 64;
+		game->c.pos = 'R';
+		game->c.move++;
+		printf("current number of steps taken : %d\n", game->c.move);
 	}
 }
 
@@ -84,14 +84,14 @@ int	key_press(int key_code, t_game *game)
 {
 	int		coor;
 
-	coor = game->chac.y * game->map.w / 64 + game->chac.x / 64;
-	if (key_code == KEY_W && game->chac.y != 0)
+	coor = game->c.y * game->map.w / 64 + game->c.x / 64;
+	if (key_code == KEY_W && game->c.y != 0)
 		move_up(game, coor);
-	else if (key_code == KEY_S && game->chac.y < game->win_h - 64)
+	else if (key_code == KEY_S && game->c.y < game->win_h - 64)
 		move_down(game, coor);
-	else if (key_code == KEY_A && game->chac.x != 0)
+	else if (key_code == KEY_A && game->c.x != 0)
 		move_left(game, coor);
-	else if (key_code == KEY_D && game->chac.x < game->win_w - 64)
+	else if (key_code == KEY_D && game->c.x < game->win_w - 64)
 		move_right(game, coor);
 	else if (key_code == KEY_ESC)
 	{
@@ -100,8 +100,6 @@ int	key_press(int key_code, t_game *game)
 		exit(EXIT_SUCCESS);
 	}
 	mapping(game);
-	mlx_string_put(game->mlx, game->win, 2 * 64, 1 * 64, 999999, \
-			ft_itoa(game->chac.move));
 	chac_draw(game);
 	return (0);
 }

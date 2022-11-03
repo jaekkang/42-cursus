@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gape <gape@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:29:18 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/21 15:39:01 by gape             ###   ########.fr       */
+/*   Updated: 2022/10/24 14:55:19 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,29 +67,26 @@ void	map_load(t_game *game)
 
 void	mapping(t_game *game)
 {
-	int	wid;
-	int	hei;
-
-	hei = -1;
-	while (++hei < game->map.h)
+	game->hei = -1;
+	while (++game->hei < game->map.h)
 	{	
-		wid = -1;
-		while (++wid < game->map.w)
+		game->wid = -1;
+		while (++game->wid < game->map.w)
 		{
 			mlx_put_image_to_window(game->mlx, game->win, \
-								game->map.img.ground, wid * 64, hei * 64);
-			if (game->map.line[hei * game->map.w + wid] == '1')
+						game->map.img.ground, game->wid * 64, game->hei * 64);
+			if (game->map.line[game->hei * game->map.w + game->wid] == '1')
 				mlx_put_image_to_window(game->mlx, game->win, \
-								game->map.img.wall, wid * 64, hei * 64);
-			else if (game->map.line[hei * game->map.w + wid] == 'C')
+							game->map.img.wall, game->wid * 64, game->hei * 64);
+			else if (game->map.line[game->hei * game->map.w + game->wid] == 'C')
 				mlx_put_image_to_window(game->mlx, game->win, \
-								game->map.img.itembox, wid * 64, hei * 64);
-			else if (game->map.line[hei * game->map.w + wid] == 'E')
+						game->map.img.itembox, game->wid * 64, game->hei * 64);
+			else if (game->map.line[game->hei * game->map.w + game->wid] == 'E')
 				mlx_put_image_to_window(game->mlx, game->win, \
-								game->map.img.exit, wid * 64, hei * 64);
+							game->map.img.exit, game->wid * 64, game->hei * 64);
 		}
 	}
-	if (game->map.line[game->chac.y * game->map.w / 64 \
-		+ game->chac.x / 64] == 'E' && game->map.info.col == 0)
+	if (game->map.line[game->c.y * game->map.w / 64 + \
+			game->c.x / 64] == 'E' && game->map.info.col == 0)
 		exit(EXIT_SUCCESS);
 }

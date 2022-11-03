@@ -6,32 +6,51 @@
 #    By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/18 07:49:32 by jaekkang          #+#    #+#              #
-#    Updated: 2022/10/18 07:57:10 by jaekkang         ###   ########.fr        #
+#    Updated: 2022/11/03 22:34:25 by jaekkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
-FLAGE = -Wall -Wextra -Werror
 
 CC = cc
+FLAGE = -Wall -Wextra -Werror
+LIB_FLAGE = -Llibft -lft
 
-SRCS = main.c
+SRC_DIR = ./srcs/
 
+OBJ_DIR = ./objs/
+
+INC = -I./includes/
+
+SRC = \
+	main.c \
+	parse.c \
+	
+SRCS = $(addprefix $(SRCS_DIR), $(SRC))
 OBJ = ${SRCS:.c=.o}
-
-${NAME} : ${OBJ}
-	@${CC} ${FLAGE} ${OBJ} -o ${NAME}
+OBJS = $(addprefix $(OBJ_DIR), $(OBJ))
 
 all : ${NAME}
-	@./${NAME}
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR) srcs
+	@$(CC) $(FLAG) ${INC} -c $< -o $@
+
+$(NAME): $(OBJS)
+	@make -C libft
+	$(CC)  $(LIB_FLAGE) ${OBJS} -o ${NAME}
 
 clean :
-	@rm -rf ${OBJ}
+	@make clean -C libft 
+	@rm -rf ${OBJ_DIR}
+	
 fclean : clean
+	@make fclean -C libft
 	@rm -f ${NAME}
 
 re :
 	@make fclean
 	@make all
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re bonus

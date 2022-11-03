@@ -6,11 +6,11 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:11:26 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/10/19 16:12:27 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/10/24 15:53:00 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "get_next_line.h"
 
 static char	*ft_util(t_info *info)
 {
