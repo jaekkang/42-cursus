@@ -52,4 +52,11 @@ open() > 리눅스 제공</br>
   
   O_SYNC : 쓰기를 할 때 실제 쓰기가 완료될 떄까지 기다립니다. 즉 물리적으로 쓰기가 완료되어야 복귀가 됩니다. </br>
   
+# close 함수
+
+> open() 함수로 열기한 파일을 사용 중지합니다. open() 함수는 fcntl.h에 정의 되어 있지만, write(), read(), close() 는 unistd.h에 선언되어 있습니다. </br>
+
+> #include <unistd.h> </br>
+> 인수 : 파일 디스크립터 (int) </br>
+> 반환 : 0 == 정상, -1 == close 실패 </br>
 
