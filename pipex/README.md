@@ -87,3 +87,12 @@ wait과의 차이는 자식프로세스가 종료될 때 까지 차단되는 것
 > #include <sys/wait.h> </br>
 > pid_t waitpid(pid_t pid, int *static, int options) </br>
 > return : 성공시 ID, 오류시 -1 </br>
+
+# pipe 함수
+
+일단, 파이프란 프로세스간 통신을 할 때 사용하는 커뮤니케이션의 한 방법. 
+
+> #include <unistd.h> </br>
+> int pipe(int fd[2]); </br>
+> return : 성공시 0, 실패시 -1 </br>
+> 인자 fd는 2개의 원소가 있는 배열임 fd[0] 읽기용 fd[1]은 쓰기용 </br>
