@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:15:35 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/11/04 05:23:15 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/11/04 10:49:59 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <unistd.h> // close , read -
 # include <stdlib.h> // malloc
 # include <stdio.h> // perror
-# include <errno.h> 
 # include <fcntl.h> // open()
 # include <string.h>
 

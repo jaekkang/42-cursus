@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 07:51:39 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/11/04 03:34:00 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/11/04 10:00:14 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	main(int ac, char **av, char **envp)
 	data.pid = fork();
 	if (data.pid == -1)
 		print_errmsg_n_exit(1, "Error\nfork() err\n");
-	if (data.pid == 0)
+	else if (data.pid == 0)
 		work_child_process(&data);
 	else
 		work_parent_process(&data);
