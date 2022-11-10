@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 07:51:39 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/11/04 10:00:14 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/11/09 19:05:47 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,77 +15,70 @@
 void	work_parent_process(t_data *data)
 {
 	int	i;
+	int	fd;
 
 	i = 0;
+	fd = open(data->av[4], O_RDWR | O_CREAT | O_TRUNC, 0644);
+	if (fd == -1)
+		perror_n_exit("Error\ninvalid outfile\n");
+	if (dup2(data->fds[0], STDIN_FILENO) == -1 || dup2(fd, STDOUT_FILENO) == -1)
+		perror("fd error\n");
+	close(data->fds[1]);
 	while (data->paths[i])
 	{
-		data->cmd2_path = ft_strjoin(data->paths[i], data->cmd2[0]);
-		if (access(data->cmd2_path, X_OK) == 0)
-			break ;
-		i++;
-		if (data->paths[i] == NULL)
-			print_errmsg_n_exit(1, "Error\ncommand not found\n");
-	}
-	dup2(data->fd[0], STDIN_FILENO);
-	dup2(data->out_fd, STDOUT_FILENO);
-	close(data->fd[1]);
-	if (execve(data->cmd2_path, data->cmd2, data->ep) == -1)
-		print_errmsg_n_exit(1, "Error\nexecve() fail\n");
-}
-
-static void	join_args(t_data *data)
-{
-	int		i;
-	char	*ret;
-
-	i = 1;
-	while (data->cmd1[i])
-	{
-		ret = ft_strjoin(ret, data->cmd1[i]);
-		i++;
-	}
-}
-
-void	work_child_process(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (data->paths[i])
-	{
-		data->cmd1_path = ft_strjoin(data->paths[i], data->cmd1[0]);
-		if (access(data->cmd1_path, X_OK) == 0)
+		if (access(ft_strjoin(data->paths[i], data->cmd1[0]), X_OK) == 0)
 			break ;
 		i++;
 		if (data->paths[i] == NULL)
 			perror("Error\ncommand not found");
 	}
-	dup2(data->in_fd, STDIN_FILENO);
-	dup2(data->fd[1], STDOUT_FILENO);
-	close(data->fd[0]);
-	if (ft_strncmp(data->cmd1[0], "awk", 3) == 0 \
-		|| ft_strncmp(data->cmd1[0], "grep", 4) == 0)
-		join_args(data);
-	if (execve(data->cmd1_path, data->cmd1, data->ep) == -1)
-		print_errmsg_n_exit(1, "Error\nexecve() fail\n");
+	if (execve(ft_strjoin(data->paths[i], data->cmd1[0]), \
+			data->cmd1, data->env) == -1)
+		perror_n_exit("Error\nexecve() fail\n");
+}
+
+void	work_child_process(t_data *data)
+{
+	int	i;
+	int	fd;
+
+	i = 0;
+	fd = open(data->av[1], O_RDONLY);
+	if (fd == -1)
+		perror_n_exit("Error\ninvalid infile\n");
+	if (dup2(fd, STDIN_FILENO) == -1 || dup2(data->fds[1], STDOUT_FILENO) == -1)
+		perror("fd error\n");
+	close(data->fds[0]);
+	while (data->paths[i])
+	{
+		if (access(ft_strjoin(data->paths[i], data->cmd2[0]), X_OK) == 0)
+			break ;
+		i++;
+		if (data->paths[i] == NULL)
+			perror_n_exit("Error\ncommand not found\n");
+	}
+	if (execve(ft_strjoin(data->paths[i], data->cmd2[0]), \
+			data->cmd2, data->env) == -1)
+		perror_n_exit("Error\nexecve() fail\n");
 }
 
 int	main(int ac, char **av, char **envp)
 {
 	t_data	data;
+	pid_t	pid;
 
 	if (ac != 5)
-		print_errmsg_n_exit(1, "Error\narg err, plz put only 5 args\n");
+		perror_n_exit("pipex: Invaild argument\n");
 	parse_data(&data, ac, av, envp);
 	find_path(&data);
-	if (pipe(data.fd) == -1)
-		print_errmsg_n_exit(1, "Error\npipe err\n");
-	data.pid = fork();
-	if (data.pid == -1)
-		print_errmsg_n_exit(1, "Error\nfork() err\n");
-	else if (data.pid == 0)
+	if (pipe(data.fds) == -1)
+		perror_n_exit("Error\npipe err\n");
+	pid = fork();
+	if (pid == -1)
+		perror_n_exit("Error\nfork err\n");
+	if (pid == 0)
 		work_child_process(&data);
 	else
 		work_parent_process(&data);
-	return (0);
+	return (EXIT_SUCCESS);
 }

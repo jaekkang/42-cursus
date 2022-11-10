@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:15:35 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/11/04 10:49:59 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/11/09 19:04:50 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,24 @@
 # define PIPEX_H
 
 # include "../libft/includes/libft.h" // need utils
-# include <sys/wait.h> // wait && waitpid
 # include <unistd.h> // close , read -
 # include <stdlib.h> // malloc
 # include <stdio.h> // perror
 # include <fcntl.h> // open()
 # include <string.h>
 
-# define BUFSIZE 1024
-# define E2BIG	7
-
 typedef struct s_data
 {
-	int		fd[2];
-	char	**argv;
+	int		fds[2];
+	char	**av;
 	char	**cmd1;
 	char	**cmd2;
-	char	*tmp_path;
 	char	**paths;
-	int		in_fd;
-	int		out_fd;
-	char	**ep;
-	char	*cmd1_path;
-	char	*cmd2_path;
-	char	buffer[BUFSIZE];
-	pid_t	pid;
+	char	**env;
 }			t_data;
 
 void	find_path(t_data *data);
+void	perror_n_exit(char *msg);
 void	parse_data(t_data *data, int ac, char **av, char **envp);
-void	print_errmsg_n_exit(int err, char *msg);
 
 #endif
