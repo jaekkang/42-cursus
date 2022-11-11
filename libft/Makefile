@@ -3,19 +3,19 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jaekkang <jaekkang@student.42.fr>          +#+  +:+       +#+         #
+#    By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/11 13:13:14 by jaekkang          #+#    #+#              #
-#    Updated: 2022/09/08 11:27:13 by jaekkang         ###   ########.fr        #
+#    Updated: 2022/11/07 19:23:52 by jaekkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC 		= cc
 CFLAGS 	= -Wall -Wextra -Werror
 NAME 	= libft.a
-AR = ar crs
-DIR = ./srcs/
-INC = ./includes/
+AR		= ar crs
+DIR		= ./srcs/
+INC		= ./includes/
 
 SRC =  \
 ft_atoi.c \
@@ -66,29 +66,29 @@ ft_lstiter.c \
 ft_lstmap.c
 
 
-SRCS = ${addprefix ${DIR}, ${SRC}}
-BONUSES = ${addprefix ${DIR}, ${BONUS}}
+SRCS		= ${addprefix ${DIR}, ${SRC}}
+BONUSES		= ${addprefix ${DIR}, ${BONUS}}
 
-OBJS = ${SRCS:.c=.o}
-BONUS_OBJS = ${BONUSES:.c=.o}
+OBJS		= ${SRCS:.c=.o}
+BONUS_OBJS	= ${BONUSES:.c=.o}
 
-all : ${NAME}
+all		: ${NAME}
 
-${NAME}: ${OBJS}
+${NAME}	: ${OBJS}
 	${AR} $@ $^
 
-bonus:	${OBJS} ${BONUS_OBJS}
+bonus	: ${OBJS} ${BONUS_OBJS}
 	${AR} ${NAME} $^
 
-.c.o :
+.c.o	:
 	${CC} ${CFLAGS} -c $< -I ${INC} -o $@
 	
-clean:
-	rm -f ${OBJS} ${BONUS_OBJS}
+clean	:
+	@rm -f ${OBJS} ${BONUS_OBJS}
 
-fclean: clean
-	rm -f ${NAME}
+fclean	: clean
+	@rm -f ${NAME}
 
-re: fclean all
+re		: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY	: all bonus clean fclean re
