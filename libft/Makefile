@@ -6,7 +6,7 @@
 #    By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/11 13:13:14 by jaekkang          #+#    #+#              #
-#    Updated: 2022/11/07 19:23:52 by jaekkang         ###   ########.fr        #
+#    Updated: 2022/11/14 16:05:26 by jaekkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ ft_lstmap.c
 SRCS		= ${addprefix ${DIR}, ${SRC}}
 BONUSES		= ${addprefix ${DIR}, ${BONUS}}
 
-OBJS		= ${SRCS:.c=.o}
+OBJS		= ${SRCS:.c=.o}  
 BONUS_OBJS	= ${BONUSES:.c=.o}
 
 all		: ${NAME}
