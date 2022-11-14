@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:50:04 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/11/11 15:02:15 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:11:07 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ static char	**exception2(int i, t_data *data)
 
 	new_argv = (char **)malloc(sizeof(char *) * 3);
 	if (!new_argv)
-		perror_n_exit("");
+		perror_n_exit("malloc", MALLOC_ERROR);
 	new_argv[0] = ft_strdup("/bin/bash");
 	new_argv[1] = ft_strdup(data->av[i] + 2);
 	new_argv[1] = ft_strtrim(new_argv[1], " 	");
 	new_argv[2] = NULL;
 	if (access(new_argv[1], X_OK) == -1 \
 		&& access(new_argv[1], F_OK) == 0)
-		perror_n_exit("");
+		perror_n_exit(new_argv[1], PERMISSION_ERROR);
 	check_str(1, new_argv);
 	return (new_argv);
 }
@@ -63,7 +63,7 @@ static char	**exception(int i, t_data *data, char *cmd)
 
 	new_argv = (char **)malloc(sizeof(char *) * 3);
 	if (!new_argv)
-		perror_n_exit("");
+		perror_n_exit("malloc", MALLOC_ERROR);
 	new_argv[0] = ft_strdup(cmd);
 	new_argv[1] = ft_strdup(data->av[i] + ft_strlen(cmd));
 	new_argv[1] = ft_strtrim(new_argv[1], " 	");

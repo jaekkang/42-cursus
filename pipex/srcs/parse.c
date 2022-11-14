@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 22:32:39 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/11/11 14:51:21 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:54:09 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 static void	path_init(t_data *data)
 {
+	data->paths = malloc(sizeof(char *) * 6);
 	if (!data->paths)
-		perror_n_exit("Error\nCan't find PATH\n");
+		perror_n_exit("malloc", MALLOC_ERROR);
 	data->paths[0] = ft_strdup("/usr/local/bin");
 	data->paths[1] = ft_strdup("/usr/bin");
 	data->paths[2] = ft_strdup("/bin");
@@ -34,7 +35,7 @@ void	find_path(t_data *data)
 		path_init(data);
 	while (data->env[i])
 	{
-		if (ft_strncmp("PATH=", data->env[i], 5) == 0)
+		if (ft_strncmp(data->env[i], "PATH", 4) == 0)
 		{
 			tmp = data->env[i] + 5;
 			break ;
@@ -42,19 +43,4 @@ void	find_path(t_data *data)
 		i++;
 	}
 	data->paths = ft_split(tmp, ':');
-	i = -1;
-	while (data->paths[++i])
-	{
-		if (data->paths[i][ft_strlen(data->paths[i]) - 1] != '/')
-			data->paths[i] = ft_strjoin(data->paths[i], "/");
-	}
-}
-
-void	parse_data(t_data *data, int ac, char **av, char **envp)
-{
-	data->av = (char **)malloc(sizeof(char *) * (ac + 1));
-	if (!data->av)
-		perror_n_exit("malloc failed\n");
-	data->av = av;
-	data->env = envp;
 }
