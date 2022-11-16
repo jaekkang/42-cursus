@@ -6,20 +6,20 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:15:35 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/11/14 16:07:51 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/11/16 15:59:50 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include "../libft/includes/libft.h" // need utils
-# include <unistd.h> // close , read -
+# include "../libft/includes/libft.h" // utils
+# include <unistd.h> // close , read
 # include <stdlib.h> // malloc
 # include <stdio.h> // perror
 # include <fcntl.h> // open()
 
-typedef enum errortypes {
+typedef enum errcode {
 	ARGC = 0,
 	PIPE = 1,
 	FORK = 2,
@@ -39,7 +39,6 @@ typedef struct s_data
 	char	**env;
 }			t_data;
 
-void	find_path(t_data *data);
 void	perror_n_exit(char *msg, int errornum);
 char	**ft_split_set(char *str, char *charset);
 void	check_str(int flag, char **new_argv);

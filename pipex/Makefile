@@ -6,7 +6,7 @@
 #    By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/18 07:49:32 by jaekkang          #+#    #+#              #
-#    Updated: 2022/11/11 14:56:07 by jaekkang         ###   ########.fr        #
+#    Updated: 2022/11/16 15:26:11 by jaekkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ INC = -I./includes/
 
 SRC = \
 	main.c \
-	parse.c \
 	error.c \
 	utils.c \
 	split.c

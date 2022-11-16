@@ -6,13 +6,43 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 07:51:39 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/11/14 16:08:16 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/11/16 15:59:45 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipex.h>
 
-void	work_parent_process(t_data *data)
+static void	path_init(t_data *data)
+{
+	data->paths = malloc(sizeof(char *) * 6);
+	if (!data->paths)
+		perror_n_exit("malloc", MALLOC);
+	data->paths[0] = ft_strdup("/usr/local/bin");
+	data->paths[1] = ft_strdup("/usr/bin");
+	data->paths[2] = ft_strdup("/bin");
+	data->paths[3] = ft_strdup("/usr/sbin");
+	data->paths[4] = ft_strdup("/sbin");
+	data->paths[5] = NULL;
+}
+
+static void	find_path(t_data *data)
+{
+	int		i;
+
+	i = -1;
+	while (data->env[++i])
+	{
+		if (ft_strncmp(data->env[i], "PATH", 4) == 0)
+		{
+			data->paths = ft_split(data->env[i] + 5, ':');
+			break ;
+		}
+	}
+	if (data->env[i] == NULL)
+		path_init(data);
+}
+
+static void	work_parent_process(t_data *data)
 {
 	char	*path;
 	char	**nav;
