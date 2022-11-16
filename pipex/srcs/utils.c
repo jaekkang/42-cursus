@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:50:04 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/11/16 16:00:21 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:46:19 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static char	**exception(int i, t_data *data, char *cmd)
 	return (new_argv);
 }
 
-char	*ft_path(char *filename, char **path)
+char	*path_check(char *filename, char **path)
 {
 	int		i;
 	char	*tmp;
@@ -107,7 +107,7 @@ char	**argv_init(int i, t_data *data)
 		new_argv = exception(i, data, "grep");
 	else
 	{
-		new_argv = ft_split_set(data->av[i], " 	");
+		new_argv = split_set(data->av[i], " 	");
 		check_str(0, new_argv);
 	}
 	return (new_argv);

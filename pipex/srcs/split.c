@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:48:49 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/11/16 16:00:08 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:47:08 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	input_split(char *str, char **split_strs, int check[], int j)
 	}
 }
 
-char	**ft_split_set(char *str, char *charset)
+char	**split_set(char *str, char *charset)
 {
 	int		i;
 	int		size;

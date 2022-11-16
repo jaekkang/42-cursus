@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:15:35 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/11/16 15:59:50 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:46:29 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ typedef struct s_data
 }			t_data;
 
 void	perror_n_exit(char *msg, int errornum);
-char	**ft_split_set(char *str, char *charset);
+char	**split_set(char *str, char *charset);
 void	check_str(int flag, char **new_argv);
-char	*ft_path(char *filename, char **path);
+char	*path_check(char *filename, char **path);
 char	**argv_init(int i, t_data *data);
 
 #endif

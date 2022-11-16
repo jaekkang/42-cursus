@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 07:51:39 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/11/16 15:59:45 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:45:10 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,14 @@ static void	work_parent_process(t_data *data)
 	nav = argv_init(3, data);
 	if (!nav)
 		perror_n_exit("malloc", MALLOC);
-	path = ft_path(nav[0], data->paths);
+	path = path_check(nav[0], data->paths);
 	if (!path)
 		perror_n_exit(nav[0], COMMAND);
 	if (execve(path, nav, data->env) == -1)
 		perror_n_exit(nav[0], RUN);
 }
 
-void	work_child_process(t_data *data)
+static void	work_child_process(t_data *data)
 {
 	char	*path;
 	char	**nav;
@@ -79,7 +79,7 @@ void	work_child_process(t_data *data)
 	nav = argv_init(2, data);
 	if (!nav)
 		perror_n_exit("malloc", MALLOC);
-	path = ft_path(nav[0], data->paths);
+	path = path_check(nav[0], data->paths);
 	if (!path)
 		perror_n_exit(nav[0], COMMAND);
 	if (execve(path, nav, data->env) == -1)
