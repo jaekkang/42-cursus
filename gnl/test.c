@@ -1,43 +1,36 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 16:23:13 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/11/14 19:09:59 by jaekkang         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <unistd.h>
-#include <stdlib.h>
 
-char *ab(size_t a,int b){
-	char *t;
-	char c=0;
-	char k=read(b,&c,1);
-	if(k<0||(k==0&&a==0))
-		return NULL;
-	if(k==0||c=='\n')
-		t=malloc(a+2);
-	else
-		t=ab(a+1,b);
-	if(t)
-		t[a]=c,t[a+1]=t[a+1]*(c!='\n');
-	return t;
-}
-char *get_next_line(int fd){
-	return ab(0,fd);
-}
-#include <fcntl.h>
-#include <stdio.h>
-
-int main(void)
+int ft_putchar(char c)
 {
-	int fd;
-
-	fd = open("./test", O_RDONLY);
-	printf("%s", get_next_line(fd));
+	return (write(1,&c, 1));
+}
+int main(int ac, char **av)
+{
+	int i=0;
+	int arr[128]={0,};
+	if (ac ==3)
+	{		
+		while (av[1][i])
+		{
+			if (arr[av[1][i]]==0)
+			{
+				arr[av[1][i]] = 1;
+				ft_putchar(av[1][i]);
+			}
+			i++;
+		}
+		i=0;
+		while (av[2][i])
+		{
+			if (arr[av[2][i]]==0)
+			{
+				arr[av[2][i]]=1;
+				ft_putchar(av[2][i]);
+			}
+			i++;
+		}
+	}
+	ft_putchar('\n');
 	return (0);
 }
+// union 문제 입력받은 문자열 중복되지 않게 순서대로
