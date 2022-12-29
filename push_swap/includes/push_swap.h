@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 17:11:20 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/12/29 14:05:32 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:30:39 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <unistd.h>
 # include "../lib/libft.h"
 # include "../ft_printf/includes/ft_printf.h"
-# include <stdio.h>
 
 typedef struct s_node
 {
@@ -29,6 +28,7 @@ typedef struct s_node
 typedef struct s_node_info {
 	struct s_node	head;
 	struct s_node	tail;
+	int				len;
 }	t_node_info;
 
 typedef struct s_info
@@ -61,5 +61,6 @@ void	oper_rr(t_node **stack);
 void	oper_rrr(t_node **a, t_node **b);
 void	run_rrr(t_node **a, t_node **b, int len);
 void	ft_swap_node(t_node *a, t_node *b);
+int	ft_atoi_int(const char *str);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/23 11:49:24 by jaekkang          #+#    #+#              #
-#    Updated: 2022/12/29 14:11:30 by jaekkang         ###   ########.fr        #
+#    Updated: 2022/12/29 17:30:49 by jaekkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC = \
 	oper2.c \
 	a_to_b.c \
 	b_to_a.c \
+	utils2.c\
 	
 SRCS = $(addprefix $(SRCS_DIR), $(SRC))
 OBJ = ${SRCS:.c=.o}

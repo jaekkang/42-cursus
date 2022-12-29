@@ -6,55 +6,57 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:12:40 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/12/29 14:16:52 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/12/29 18:49:25 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	init_nodes_stack(int ac, char **av, t_node **a, t_node **b)
+void	init_nodes_stack(char *str, t_node **a, t_node **b)
 {
-	char		**arr;
-	int			i;
+	char	**strs;
+	int		num;
+	int		i;
 
 	*a = 0;
 	*b = 0;
-	if (ac == 2)
+	i = -1;
+	strs = ft_split(str, ' ');
+	while (strs[++i])
 	{
-		i = -1;
-		arr = ft_split(av[1], ' ');
-		while (arr[++i])
-		{
-			ft_add_node(a, ft_newnode(ft_atoi(arr[i])));
-		}
-		return ;
+		num = ft_atoi_int(strs[i]);
+		ft_add_node(a, ft_newnode(num));
+		str++;
 	}
-	i = 0;
-	while (av[++i])
+}
+
+int	get_arr_len(char **strs)
+{
+	int	count_num;
+
+	count_num = 0;
+	while (*strs)
 	{
-		ft_add_node(a, ft_newnode(ft_atoi(av[i])));
+		count_num++;
+		strs++;
 	}
-	return ;
+	return (count_num);
 }
 
 int	get_nodes_size(int ac, char **av)
 {
-	char	**str;
+	char	**strs;
+	int		ret;
 	int		i;
 
 	i = 0;
-	if (ac == 2)
+	ret = 0;
+	if (++i < ac)
 	{
-		str = ft_split(av[1], ' ');
-		while (str[i])
-		{
-			i++;
-		}
-		return (i);
+		strs = ft_split(av[i], ' ');
+		ret += get_arr_len(strs);
 	}
-	else if (ac > 2)
-		return (ac - 1);
-	return (-1);
+	return (ret);
 }
 
 int	*put_value_in_arr(t_node *a, int len)
@@ -79,22 +81,59 @@ void	sort_nodes(t_node **a, t_node **b, int len)
 	a_to_b(a, b, len);
 }
 
+char	*sum_arg(int ac, char **av)
+{
+	int		i;
+	int		j;
+	char	*ret;
+	char	**strs;
+
+	i = 0;
+	ret = ft_strdup("");
+	while (++i < ac)
+	{
+		strs = ft_split(av[i], ' ');
+		j = -1;
+		while (strs[++j])
+		{
+			ret = ft_strjoin(ret, strs[j]);
+			ret = ft_strjoin(ret, " ");
+		}
+	}
+	return (ret);
+}
+
 int	main(int ac, char **av)
 {
 	t_node		*a;
 	t_node		*b;
+	t_node		*head;
 	int			len;
+	char		*str;
+	int			i;
 
 	if (ac < 2)
 		return (0);
 	len = get_nodes_size(ac, av);
-	init_nodes_stack(ac, av, &a, &b);
-	sort_nodes(&a, &b, len);
-	for (int i =0;i<len;i++)
+	str = sum_arg(ac, av);
+	init_nodes_stack(str, &a, &b);
+	head = a;
+	i = 0;
+	while (i < len)
 	{
 		ft_printf("%d ", a->value);
-		a = a->next;
+		a = a->pre;
+		i++;
 	}
 	ft_printf("\n");
+	sort_nodes(&a, &b, len);
+	i = 0;
+	a = head;
+	while (i < len)
+	{
+		ft_printf("%d ", a->value);
+		a = a->pre;
+		i++;
+	}
 	return (0);
 }
