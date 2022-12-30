@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:10:32 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/12/30 16:56:00 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/12/30 19:21:02 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	b_to_a(t_node **a, t_node **b, int len)
 	{
 		if (len == 2)
 		{
-			if ((*b)->value < (*b)->pre->value)
+			if ((*b)->value < (*b)->next->value)
 			{
 				oper_s(b);
 				ft_printf("sb\n");
@@ -63,7 +63,7 @@ void	b_to_a(t_node **a, t_node **b, int len)
 			oper_r(b);
 			oper_s(b);
 			oper_rr(b);
-			if ((*b)->value < (*b)->pre->value)
+			if ((*b)->value < (*b)->next->value)
 			{
 				oper_s(b);
 				ft_printf("sb\n");

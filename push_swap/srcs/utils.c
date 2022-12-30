@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:13:34 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/12/29 19:02:05 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:16:31 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ void	ft_add_node(t_node **a, t_node *node)
 		*a = node;
 	else
 	{
-		(*a)->next->pre = node;
-		node->next = (*a)->next;
-		(*a)->next = node;
-		node->pre = (*a);
+		(*a)->pre->next = node;
+		node->pre = (*a)->pre;
+		(*a)->pre = node;
+		node->next = (*a);
 	}
 }
 
