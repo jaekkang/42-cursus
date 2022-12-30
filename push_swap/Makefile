@@ -6,7 +6,7 @@
 #    By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/23 11:49:24 by jaekkang          #+#    #+#              #
-#    Updated: 2022/12/29 17:30:49 by jaekkang         ###   ########.fr        #
+#    Updated: 2022/12/30 12:26:29 by jaekkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,13 +30,15 @@ OBJ_DIR = ./objs/
 
 SRC = \
 	main.c \
-	utils.c \
+	node_init.c \
+	sort.c \
 	quick_sort.c \
 	stack_utils.c \
 	oper1.c \
 	oper2.c \
 	a_to_b.c \
 	b_to_a.c \
+	utils.c \
 	utils2.c\
 	
 SRCS = $(addprefix $(SRCS_DIR), $(SRC))

@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 19:34:33 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/12/29 14:12:08 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/12/30 16:57:22 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	set_pivot(t_node *stack, int len, t_info *info, char target)
 	int	*arr;
 	int	div;
 
-	arr = put_value_in_arr(stack, len);
+	arr = get_int_arr(stack, len);
 	quick_sort(arr, 0, len - 1);
 	div = len / 3;
 	if (len % 3 == 2)
@@ -75,7 +75,7 @@ void	a_to_b(t_node **a, t_node **b, int len)
 	{
 		if (len == 2)
 		{
-			if ((*a)->value > (*a)->next->value)
+			if ((*a)->value > (*a)->pre->value)
 			{
 				oper_s(a);
 				ft_printf("sa\n");
@@ -86,7 +86,7 @@ void	a_to_b(t_node **a, t_node **b, int len)
 			oper_r(a);
 			oper_s(a);
 			oper_rr(a);
-			if ((*a)->value > (*a)->next->value)
+			if ((*a)->value > (*a)->pre->value)
 			{
 				oper_s(a);
 				ft_printf("sa\n");

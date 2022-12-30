@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:47 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/12/29 14:13:01 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/12/30 17:00:21 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	oper_s(t_node **stack)
 
 	if (!(*stack))
 		return ;
-	tmp = (*stack)->next->value;
-	(*stack)->next->value = (*stack)->value;
+	tmp = (*stack)->pre->value;
+	(*stack)->pre->value = (*stack)->value;
 	(*stack)->value = tmp;
 }
 

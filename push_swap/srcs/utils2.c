@@ -6,13 +6,26 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 17:23:23 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/12/29 17:44:32 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/12/30 16:00:27 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_err_msg()
+void	split_free(char **s)
+{
+	int	i;
+
+	i = -1;
+	while (s && s[++i])
+	{
+		if (s[i])
+			free(s[i]);
+	}
+	free(s);
+}
+
+void	print_err_msg(void)
 {
 	ft_printf("Error\n");
 	exit(1);
