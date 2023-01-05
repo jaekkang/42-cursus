@@ -6,53 +6,56 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:47 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/12/30 19:19:46 by jaekkang         ###   ########.fr       */
+/*   Updated: 2023/01/04 19:15:15 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	oper_s(t_node **stack)
+int	oper_s(t_node **stack)
 {
 	int	tmp;
 
 	if (!(*stack))
-		return ;
+		return (0);
 	tmp = (*stack)->next->value;
 	(*stack)->next->value = (*stack)->value;
 	(*stack)->value = tmp;
+	return (1);
 }
 
-void	oper_r(t_node **stack)
+int	oper_r(t_node **stack)
 {
 	if (!*stack)
-		return ;
+		return (0);
 	*stack = (*stack)->next;
-	return ;
+	return (1);
 }
 
-void	oper_rr(t_node **stack)
+int	oper_rr(t_node **stack)
 {
 	if (!*stack)
-		return ;
+		return (0);
 	*stack = (*stack)->pre;
+	return (1);
 }
 
-void	oper_rrr(t_node **a, t_node **b)
+int	oper_rrr(t_node **a, t_node **b)
 {
-	oper_rr(a);
-	oper_rr(b);
-	ft_printf("rrr\n");
+	if (!oper_rr(a) || !oper_rr(b))
+		return (0);
+	return (1);
 }
 
-void	oper_p(t_node **a, t_node **b, char target)
+int	oper_p(t_node **a, t_node **b, char target)
 {
 	if (target == 'a' && push_node(a, pop_node(b)))
 	{
-		ft_printf("pa\n");
+		return (1);
 	}
 	else if (target == 'b' && push_node(b, pop_node(a)))
 	{
-		ft_printf("pb\n");
+		return (1);
 	}
+	return (0);
 }

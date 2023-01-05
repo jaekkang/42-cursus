@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   oper2.c                                            :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/26 19:22:44 by jaekkang          #+#    #+#             */
-/*   Updated: 2023/01/05 15:21:09 by jaekkang         ###   ########.fr       */
+/*   Created: 2023/01/04 16:31:02 by jaekkang          #+#    #+#             */
+/*   Updated: 2023/01/04 16:31:57 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	run_rrr(t_node **a, t_node **b, int len)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	while (len--)
-		enum_work("rrr", a, b);
+	while (*s1 && *s2)
+	{
+		if (*s1 != *s2)
+			return (*(unsigned char *)s1 - *(unsigned char *)s2);
+		s1++;
+		s2++;
+	}
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }

@@ -6,7 +6,7 @@
 #    By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/23 11:49:24 by jaekkang          #+#    #+#              #
-#    Updated: 2022/12/30 12:26:29 by jaekkang         ###   ########.fr        #
+#    Updated: 2023/01/04 17:53:42 by jaekkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,8 +38,10 @@ SRC = \
 	oper2.c \
 	a_to_b.c \
 	b_to_a.c \
+	enum_work.c \
 	utils.c \
-	utils2.c\
+	utils2.c \
+	utils3.c \
 	
 SRCS = $(addprefix $(SRCS_DIR), $(SRC))
 OBJ = ${SRCS:.c=.o}

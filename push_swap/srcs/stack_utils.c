@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 13:42:53 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/12/27 01:17:01 by jaekkang         ###   ########.fr       */
+/*   Updated: 2023/01/04 18:24:11 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ t_node	*pop_node(t_node **list)
 	tmp = *list;
 	if (!*list)
 		return (0);
-	if (*list == (*list)->pre)
+	if (*list == (*list)->next)
 		*list = 0;
 	else
 	{
-		(*list)->next->pre = (*list)->pre;
 		(*list)->pre->next = (*list)->next;
-		(*list) = (*list)->pre;
-		tmp->pre = tmp;
+		(*list)->next->pre = (*list)->pre;
+		(*list) = (*list)->next;
 		tmp->next = tmp;
+		tmp->pre = tmp;
 	}
 	return (tmp);
 }
@@ -38,10 +38,10 @@ int	push_node(t_node **dst, t_node *src)
 		return (1);
 	if (*dst)
 	{
-		(*dst)->next->pre = src;
-		src->next = (*dst)->next;
-		(*dst)->next = src;
-		src->pre = *dst;
+		(*dst)->pre->next = src;
+		src->pre = (*dst)->pre;
+		(*dst)->pre = src;
+		src->next = *dst;
 	}
 	*dst = src;
 	return (1);

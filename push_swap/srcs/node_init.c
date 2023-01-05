@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 12:11:34 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/12/30 18:15:12 by jaekkang         ###   ########.fr       */
+/*   Updated: 2023/01/05 18:52:48 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	init_nodes_stack(char *str, t_node **a, t_node **b)
 	*b = 0;
 	i = -1;
 	strs = ft_split(str, ' ');
+	if (*strs == NULL)
+		print_err_msg();
 	while (strs[++i])
 	{
 		num = ft_atoi_int(strs[i]);
@@ -71,7 +73,7 @@ int	*get_int_arr(t_node *a, int len)
 	while (++i < len)
 	{
 		ret[i] = a->value;
-		a = a->pre;
+		a = a->next;
 	}
 	return (ret);
 }
@@ -88,6 +90,8 @@ char	*sum_arg(int ac, char **av)
 	ret = ft_strdup("");
 	while (++i < ac)
 	{
+		if (!*av[i])
+			print_err_msg();
 		strs = ft_split(av[i], ' ');
 		j = -1;
 		while (strs[++j])

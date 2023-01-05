@@ -6,7 +6,7 @@
 #    By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/11 13:13:14 by jaekkang          #+#    #+#              #
-#    Updated: 2022/10/11 20:14:41 by jaekkang         ###   ########.fr        #
+#    Updated: 2023/01/04 16:30:24 by jaekkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ ft_strlcat.c \
 ft_strlcpy.c \
 ft_strlen.c \
 ft_strmapi.c \
+ft_strcmp.c \
 ft_strncmp.c \
 ft_strnstr.c \
 ft_strrchr.c \
