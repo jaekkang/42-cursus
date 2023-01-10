@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   oper2.c                                            :+:      :+:    :+:   */
+/*   push_swap_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/26 19:22:44 by jaekkang          #+#    #+#             */
-/*   Updated: 2023/01/10 16:26:20 by jaekkang         ###   ########.fr       */
+/*   Created: 2023/01/10 19:41:14 by jaekkang          #+#    #+#             */
+/*   Updated: 2023/01/10 20:44:48 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef PUSH_SWAP_BONUS_H
+# define PUSH_SWAP_BONUS_H
 
-void	run_rrr(t_node **a, t_node **b, int len, t_cmd **cmd)
-{
-	while (len--)
-		enum_work("rrr", a, b, cmd);
-}
+# include "./push_swap.h"
+# include "../gnl/get_next_line.h"
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 17:23:23 by jaekkang          #+#    #+#             */
-/*   Updated: 2023/01/05 18:09:39 by jaekkang         ###   ########.fr       */
+/*   Updated: 2023/01/10 14:41:36 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,18 +77,4 @@ int	is_double_val(t_node **a)
 		head = head->next;
 	}
 	return (0);
-}
-
-int	is_sorted(t_node **a, int len)
-{
-	t_node	*head;
-
-	head = (*a);
-	while (len-- > 1)
-	{
-		if (head->value > head->next->value)
-			return (0);
-		head = head->next;
-	}
-	return (1);
 }

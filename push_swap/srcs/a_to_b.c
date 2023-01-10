@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 19:34:33 by jaekkang          #+#    #+#             */
-/*   Updated: 2023/01/05 17:52:02 by jaekkang         ###   ########.fr       */
+/*   Updated: 2023/01/10 19:13:53 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,27 @@ void	set_pivot(t_node *stack, int len, t_info *info, char target)
 		info->pi1 = arr[div];
 		info->pi2 = arr[2 * div];
 	}
+	free(arr);
 }
 
-void	sort_a_3(t_node **a, t_node **b, int len)
+void	sort_a_3(t_node **a, t_node **b, int len, t_cmd **cmd)
 {
 	if (len != 1)
 	{
 		if ((*a)->value > (*a)->next->value)
-			enum_work("sa", a, b);
+			enum_work("sa", a, b, cmd);
 		if (len == 3 && !is_sorted(a, len))
 		{
-			enum_work("ra", a, b);
-			enum_work("sa", a, b);
-			enum_work("rra", a, b);
+			enum_work("ra", a, b, cmd);
+			enum_work("sa", a, b, cmd);
+			enum_work("rra", a, b, cmd);
 			if ((*a)->value > (*a)->next->value)
-				enum_work("sa", a, b);
+				enum_work("sa", a, b, cmd);
 		}
 	}
 }
 
-void	grouping_stack_a(t_node **a, t_node **b, t_info *info)
+void	grouping_stack_a(t_node **a, t_node **b, t_info *info, t_cmd **cmd)
 {
 	int	len;
 
@@ -60,40 +61,40 @@ void	grouping_stack_a(t_node **a, t_node **b, t_info *info)
 	{
 		if ((*a)->value > info->pi2)
 		{
-			enum_work("ra", a, b);
+			enum_work("ra", a, b, cmd);
 			(info->cnt_ra)++;
 		}
 		else if ((*a)->value <= info->pi1)
 		{
-			enum_work("pb", a, b);
+			enum_work("pb", a, b, cmd);
 			(info->cnt_pb)++;
 		}
 		else
 		{
-			enum_work("pb", a, b);
-			enum_work("rb", a, b);
+			enum_work("pb", a, b, cmd);
+			enum_work("rb", a, b, cmd);
 			(info->cnt_pb)++;
 			(info->cnt_rb)++;
 		}
 	}
 }
 
-void	a_to_b(t_node **a, t_node **b, int len)
+void	a_to_b(t_node **a, t_node **b, t_cmd **cmd, int len)
 {
 	t_info	info;
 
 	if (len <= 3)
 	{
 		if (!is_sorted(a, len))
-			sort_a_3(a, b, len);
+			sort_a_3(a, b, len, cmd);
 		return ;
 	}
 	info = (t_info){0, };
 	info.len = len;
 	set_pivot(*a, len, &info, 'a');
-	grouping_stack_a(a, b, &info);
-	run_rrr(a, b, info.cnt_rb);
-	a_to_b(a, b, info.cnt_ra);
-	b_to_a(a, b, info.cnt_rb);
-	b_to_a(a, b, info.cnt_pb - info.cnt_rb);
+	grouping_stack_a(a, b, &info, cmd);
+	run_rrr(a, b, info.cnt_rb, cmd);
+	a_to_b(a, b, cmd, info.cnt_ra);
+	b_to_a(a, b, cmd, info.cnt_rb);
+	b_to_a(a, b, cmd, info.cnt_pb - info.cnt_rb);
 }

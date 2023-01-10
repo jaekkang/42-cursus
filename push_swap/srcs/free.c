@@ -1,19 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   oper2.c                                            :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/26 19:22:44 by jaekkang          #+#    #+#             */
-/*   Updated: 2023/01/10 16:26:20 by jaekkang         ###   ########.fr       */
+/*   Created: 2023/01/10 13:39:21 by jaekkang          #+#    #+#             */
+/*   Updated: 2023/01/10 19:12:07 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	run_rrr(t_node **a, t_node **b, int len, t_cmd **cmd)
+void	ft_free_all(char **strs)
 {
-	while (len--)
-		enum_work("rrr", a, b, cmd);
+	int	i;
+
+	i = -1;
+	while (strs[++i])
+	{
+		if (strs[i])
+			free(strs[i]);
+	}
+	free(strs);
+}
+
+void	ft_nodeclear(t_node *lst)
+{
+	t_node	*res;
+
+	if (lst == NULL)
+		return ;
+	lst->pre->next = NULL;
+	while (lst)
+	{
+		res = lst->next;
+		free(lst);
+		lst = res;
+	}
 }

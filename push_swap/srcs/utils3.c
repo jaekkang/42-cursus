@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 17:53:24 by jaekkang          #+#    #+#             */
-/*   Updated: 2023/01/05 15:17:24 by jaekkang         ###   ########.fr       */
+/*   Updated: 2023/01/10 14:41:34 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,22 @@ int	get_middle_node_value(t_node **a, int len)
 	tmp = get_int_arr(*a, len);
 	quick_sort(tmp, 0, len - 1);
 	ret = tmp[(len / 2)];
+	free(tmp);
 	return (ret);
+}
+
+int	is_sorted(t_node **a, int len)
+{
+	t_node	*head;
+
+	head = (*a);
+	while (len-- > 1)
+	{
+		if (head->value > head->next->value)
+			return (0);
+		head = head->next;
+	}
+	return (1);
 }
 
 int	is_sorted_row(t_node **a, int len)

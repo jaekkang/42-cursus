@@ -6,41 +6,34 @@
 #    By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/11 13:13:14 by jaekkang          #+#    #+#              #
-#    Updated: 2023/01/05 19:30:59 by jaekkang         ###   ########.fr        #
+#    Updated: 2023/01/10 20:49:27 by jaekkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME = libgnl.a
 FLAGS = -Wall -Wextra -Werror
-SRC_NAME = ft_printf.c \
-			ft_print_op.c \
-			ft_print_op2.c \
-			ft_utils.c \
-			ft_utils2.c
-SRC_PATH = ./srcs
-SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
 
-OBJ_NAME = $(SRC_NAME:.c=.o)
-OBJ_PATH = ./obj
-OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
+HEADER = get_next_line.h
 
-INC_LINK = -I./includes
+SRCS = \
+get_next_line.c \
+get_next_line_utils.c
+	
+OBJ = $(SRCS:.c=.o)
 
 $(NAME): $(OBJ)
-	@ar rc $@ $^
+	ar rc $@ $^
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
-	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	@gcc $(FLAGS) $(INC_LINK) -c $< -o $@ 
-
+.c.o :
+	gcc $(FLAGS) -c $< -I ${HEADER} -o $@
 
 all : $(NAME)
 
 clean :
-	@rm -rf ./obj
+	@rm -rf ${OBJ}
 
 fclean : clean
-	@rm -rf ./obj $(NAME)
+	@rm -rf $(NAME)
 
 re : fclean all
 
