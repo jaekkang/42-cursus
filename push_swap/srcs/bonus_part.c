@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 19:37:45 by jaekkang          #+#    #+#             */
-/*   Updated: 2023/01/10 20:56:02 by jaekkang         ###   ########.fr       */
+/*   Updated: 2023/01/10 21:14:29 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void	run_both(char *op, t_node **a, t_node **b)
 {
-	if (!ft_strncmp(op, "ss", 2))
+	if (!ft_strncmp(op, "ss\n", 4))
 	{
 		oper_s(a);
 		oper_s(b);
 	}
-	else if (!ft_strncmp(op, "rr", 2))
+	else if (!ft_strncmp(op, "rr\n", 4))
 	{
 		oper_r(a);
 		oper_r(b);
 	}
-	else if (!ft_strncmp(op, "rrr", 2))
+	else if (!ft_strncmp(op, "rrr\n", 4))
 	{
 		oper_rr(a);
 		oper_rr(b);
@@ -38,7 +38,7 @@ void	run_op(char *op, t_node **a, t_node **b)
 	else if (!ft_strncmp(op, "sb\n", 4))
 		oper_s(b);
 	else if (!ft_strncmp(op, "ss\n", 4))
-		run_both("ss", a, b);
+		run_both(op, a, b);
 	else if (!ft_strncmp(op, "pa\n", 4))
 		oper_p(a, b, 'a');
 	else if (!ft_strncmp(op, "pb\n", 4))
@@ -48,13 +48,13 @@ void	run_op(char *op, t_node **a, t_node **b)
 	else if (!ft_strncmp(op, "rb\n", 4))
 		oper_r(b);
 	else if (!ft_strncmp(op, "rr\n", 4))
-		run_both("rr", a, b);
+		run_both(op, a, b);
 	else if (!ft_strncmp(op, "rra\n", 4))
 		oper_rr(a);
 	else if (!ft_strncmp(op, "rrb\n", 4))
 		oper_rr(b);
 	else if (!ft_strncmp(op, "rrr\n", 4))
-		run_both("rrr", a, b);
+		run_both(op, a, b);
 	else
 		print_err_msg();
 }
@@ -67,20 +67,23 @@ void	checker(t_node **a, t_node **b)
 	while (1)
 	{
 		op = get_next_line(STDIN_FILENO);
-		if (op == 0)
-			return ;
+		if (!op)
+			break ;
 		run_op(op, a, b);
+		free(op);
 	}
 }
 
 int	get_stack_size(t_node **stack)
 {
-	int	i;
+	t_node	*tmp;
+	int		i;
 
-	i = 0;
+	i = 1;
 	if (!*stack)
 		return (0);
-	while ((*stack))
+	tmp = (*stack)->next;
+	while (tmp != (*stack))
 	{
 		*stack = (*stack)->next;
 		i++;
@@ -106,8 +109,10 @@ int	main(int ac, char **av)
 		print_err_msg();
 	checker(&a, &b);
 	if (get_stack_size(&b) == 0 && is_sorted(&a, len))
-		ft_printf("OK\n");
+		write(1, "OK\n", 3);
 	else
-		ft_printf("KO\n");
+		write(1, "KO\n", 3);
+	ft_nodeclear(a);
+	ft_nodeclear(b);
 	return (0);
 }
