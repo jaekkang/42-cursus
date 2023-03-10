@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:50:04 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/11/16 19:10:30 by jaekkang         ###   ########.fr       */
+/*   Updated: 2023/02/02 16:33:55 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ static char	**exception2(int i, t_data *data)
 	new_argv[1] = ft_strdup(data->av[i] + 2);
 	new_argv[1] = ft_strtrim(new_argv[1], " 	");
 	new_argv[2] = NULL;
-	if (access(new_argv[1], X_OK) == -1 \
-		&& access(new_argv[1], F_OK) == 0)
+	if (access(new_argv[1], X_OK) == -1 && access(new_argv[1], F_OK) == 0)
 		perror_n_exit(new_argv[1], PERMISSION);
 	check_str(1, new_argv);
 	return (new_argv);

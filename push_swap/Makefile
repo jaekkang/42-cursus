@@ -6,7 +6,7 @@
 #    By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/23 11:49:24 by jaekkang          #+#    #+#              #
-#    Updated: 2023/01/10 20:49:36 by jaekkang         ###   ########.fr        #
+#    Updated: 2023/02/10 11:36:29 by jaekkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,9 +101,9 @@ $(NAME): $(OBJS)
 
 ${BONUS_NAME} : ${BONUS_OBJS}
 	@make -C lib
-	@make -C ft_printf
-	@make -C gnl
-	@$(CC) ${GNLFLAG} ${PRINTFLAG} ${LIBFLAG} ${BONUS_OBJS} -o ${BONUS_NAME}
+	make -C ft_printf
+	make -C gnl
+	$(CC) ${GNLFLAG} ${PRINTFLAG} ${LIBFLAG} ${BONUS_OBJS} -o ${BONUS_NAME}
 	
 clean :
 	@rm -rf ./objs

@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 14:40:00 by jaekkang          #+#    #+#             */
-/*   Updated: 2022/11/15 13:44:29 by jaekkang         ###   ########.fr       */
+/*   Updated: 2022/12/13 13:47:34 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,22 @@ int	ft_printf(const char *str, ...)
 	}	
 	va_end(ap);
 	return (size);
+}
+
+int check_op(const char **str, va_list ap)
+{
+	int size;
+	char type;
+	
+	(*str)++;
+	type = *(*str);
+	size = -1;
+	if (type == 'i')
+		size = check_i(ap);
+	return (size);
+}
+
+int check_i(va_list ap)
+{
+	va_arg(ap, int);
 }
