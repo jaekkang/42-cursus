@@ -3,8 +3,8 @@
 HumanB::HumanB(std::string name) : _name(name), _weapon(NULL) {}
 
 void HumanB::attack() {
-    std::cout << this->getName() << " attacks with his "
-              << this->getWeapon()->getType() << std::endl;
+    std::cout << this->_name << " attacks with his " << this->_weapon->getType()
+              << std::endl;
 }
 
 const Weapon *HumanB::getWeapon(void) const { return (this->_weapon); }

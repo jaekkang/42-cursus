@@ -1,26 +1,26 @@
+NAME = a.out
 
-NAME = CPP01_03
+CXX = c++
 
-CC = c++
-
-FLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 
-OBJ = ${SRC:.cpp=.o}
+OBJ = $(SRC:.cpp=.o)
 
-all : ${NAME}
+RM = rm -rf
 
-${NAME} : ${OBJ}
-	@${CC} ${FLAGS} $^ -o $@
+all : $(NAME)
+
+$(NAME) : $(OBJ)
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
 clean :
-	@rm -rf ${OBJ}
+	$(RM) $(OBJ)
 
 fclean : clean
-	@rm -rf ${NAME}
+	$(RM) $(NAME)
 
 re : fclean all
-	
-.PHONY : all clean fclean re
-	 
+
+.PHONY : re fclean clean all
