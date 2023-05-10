@@ -1,27 +1,23 @@
 #include "Zombie.hpp"
 
 Zombie::Zombie() {
-    std::cout << "constructor: create Zombie class [default]" << std::endl;
+    std::cout << "Zombie [default] constructor called" << std::endl;
 }
 
-Zombie::Zombie(std::string name) {
-    std::cout << "constructor: create Zombie class [" << name << "]"
-              << std::endl;
-    this->set_name(name);
+Zombie::Zombie(std::string name) : _name(name) {
+    std::cout << "Zombie [" << name << "] constructor called" << std::endl;
 }
 
 Zombie::~Zombie() {
-    std::cout << "destructor: delete "
-              << "[" << (this->get_name() != "" ? this->get_name() : "default")
-              << "]" << std::endl;
+    std::cout << "Zombie [" << (this->_name != "" ? this->_name : "default")
+              << "] destructor called" << std::endl;
 }
 
 void Zombie::announce(void) {
-    std::cout << "<" << (this->get_name() != "" ? this->get_name() : "default")
-              << ">: "
-              << "BraiiiiiiinnnzzzZ..." << std::endl;
+    std::cout << "[" << (this->_name != "" ? this->_name : "default")
+              << "] : BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-void Zombie::set_name(std::string name) { this->_name = name; }
+void Zombie::setName(std::string name) { this->_name = name; }
 
-std::string Zombie::get_name(void) { return (this->_name); }
+std::string Zombie::getName(void) { return (this->_name); }
