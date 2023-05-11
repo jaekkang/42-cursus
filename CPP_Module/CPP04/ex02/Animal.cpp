@@ -13,7 +13,8 @@ Animal &Animal::operator=(const Animal &obj) {
     return (*this);
 }
 Animal::~Animal() {
-    std::cout << this->type << " class destructor called" << std::endl;
+    std::cout << this->type << " class destructor called : Animal class"
+              << std::endl;
 }
 
 const std::string Animal::getType() const { return (this->type); }
