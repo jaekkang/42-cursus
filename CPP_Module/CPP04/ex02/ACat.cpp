@@ -1,13 +1,13 @@
 #include "ACat.hpp"
 
 ACat::ACat() {
-    setType("Dog");
+    setType("ACat");
+    std::cout << getType() << " class constructor called" << std::endl;
     _brain = new Brain();
-    std::cout << "Dog Class constructor called" << std::endl;
 }
 
 ACat::ACat(const ACat &obj) {
-    this->type = obj.getType();
+    setType(obj.getType());
     if (_brain)
         delete _brain;
     _brain = new Brain(*obj.getBrain());
@@ -15,7 +15,7 @@ ACat::ACat(const ACat &obj) {
 
 ACat &ACat::operator=(const ACat &obj) {
     if (this != &obj) {
-        this->type = obj.getType();
+        setType(obj.getType());
     }
     if (_brain)
         delete _brain;
@@ -24,7 +24,8 @@ ACat &ACat::operator=(const ACat &obj) {
 }
 
 ACat::~ACat() {
-    std::cout << "Dog Class destructor called" << std::endl;
+    std::cout << getType() << " class destructor called" << std::endl;
+    setType("AAnimal");
     delete _brain;
 }
 

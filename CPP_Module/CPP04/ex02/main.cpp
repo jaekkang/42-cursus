@@ -15,4 +15,7 @@ int main() {
     for (int i = 0; i < 5; ++i) {
         array[i]->makeSound();
     }
+    for (int i = 0; i < 5; ++i) {
+        delete array[i];
+    }
 }

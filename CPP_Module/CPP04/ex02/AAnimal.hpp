@@ -9,7 +9,7 @@ class AAnimal {
     std::string type;
 
   public:
-    AAnimal(/* args*/);
+    AAnimal();
     virtual ~AAnimal();
     AAnimal(const AAnimal &obj);
     AAnimal &operator=(const AAnimal &obj);

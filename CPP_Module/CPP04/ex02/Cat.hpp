@@ -10,7 +10,7 @@ class Cat : public Animal {
 
   public:
     Cat();
-    virtual ~Cat();
+    ~Cat();
     Cat(const Cat &obj);
     Cat &operator=(const Cat &obj);
 

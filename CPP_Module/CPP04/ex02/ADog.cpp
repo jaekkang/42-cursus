@@ -1,13 +1,13 @@
 #include "ADog.hpp"
 
 ADog::ADog() {
-    setType("Dog");
+    setType("ADog");
+    std::cout << getType() << " class constructor called" << std::endl;
     _brain = new Brain();
-    std::cout << "Dog Class constructor called" << std::endl;
 }
 
 ADog::ADog(const ADog &obj) {
-    this->type = obj.getType();
+    setType(obj.getType());
     if (_brain)
         delete _brain;
     _brain = new Brain(*obj.getBrain());
@@ -15,7 +15,7 @@ ADog::ADog(const ADog &obj) {
 
 ADog &ADog::operator=(const ADog &obj) {
     if (this != &obj) {
-        this->type = obj.getType();
+        setType(obj.getType());
     }
     if (_brain)
         delete _brain;
@@ -24,7 +24,8 @@ ADog &ADog::operator=(const ADog &obj) {
 }
 
 ADog::~ADog() {
-    std::cout << "Dog Class destructor called" << std::endl;
+    std::cout << getType() << " class destructor called" << std::endl;
+    setType("AAnimal");
     delete _brain;
 }
 

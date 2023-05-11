@@ -10,7 +10,7 @@ class ACat : public AAnimal {
 
   public:
     ACat(/* args*/);
-    virtual ~ACat();
+    ~ACat();
     ACat(const ACat &obj);
     ACat &operator=(const ACat &obj);
 
