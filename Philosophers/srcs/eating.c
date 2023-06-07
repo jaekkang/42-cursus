@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:08:23 by jaekkang          #+#    #+#             */
-/*   Updated: 2023/03/10 20:33:13 by jaekkang         ###   ########.fr       */
+/*   Updated: 2023/03/13 13:25:06 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,18 @@ void	pick_fork(t_info *info, t_philo *philo)
 			continue ;
 		}
 		info->forks[philo->l_fork] = USING;
-		pthread_mutex_unlock(&info->pick_up[philo->l_fork]);
 		pthread_mutex_lock(&info->pick_up[philo->r_fork]);
 		if (info->forks[philo->r_fork] == USING)
 		{
 			info->forks[philo->l_fork] = NOT_USING;
 			pthread_mutex_unlock(&info->pick_up[philo->r_fork]);
+			pthread_mutex_unlock(&info->pick_up[philo->l_fork]);
 			usleep(0);
 			continue ;
 		}
 		info->forks[philo->r_fork] = USING;
 		pthread_mutex_unlock(&info->pick_up[philo->r_fork]);
-		// pthread_mutex_unlock(&info->pick_up[philo->l_fork]);
+		pthread_mutex_unlock(&info->pick_up[philo->l_fork]);
 		pthread_mutex_lock(&info->print);
 		print_action(info, "has taken a fork", philo->id, get_time());
 		print_action(info, "has taken a fork", philo->id, get_time());

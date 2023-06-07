@@ -6,7 +6,7 @@
 /*   By: jaekkang <jaekkang@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 14:00:37 by jaekkang          #+#    #+#             */
-/*   Updated: 2023/03/10 20:08:38 by jaekkang         ###   ########.fr       */
+/*   Updated: 2023/03/13 13:24:17 by jaekkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,11 @@ int	fork_init(t_info *info)
 		return (1);
 	i = -1;
 	while (++i < info->p_num)
+	{
+		pthread_mutex_lock(&info->pick_up[i]);
 		info->forks[i] = NOT_USING;
+		pthread_mutex_unlock(&info->pick_up[i]);
+	}
 	return (0);
 }
 
