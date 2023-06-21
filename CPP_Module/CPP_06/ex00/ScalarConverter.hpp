@@ -6,23 +6,23 @@
 #include <iostream>
 
 class ScalarConverter {
-  private:
-    static std::string input;
+ private:
+  static std::string input;
 
-  public:
-    ScalarConverter();
-    ~ScalarConverter();
-    ScalarConverter(const ScalarConverter &obj);
-    ScalarConverter &operator=(const ScalarConverter &obj);
+ public:
+  ScalarConverter();
+  ~ScalarConverter();
+  ScalarConverter(const ScalarConverter &obj);
+  ScalarConverter &operator=(const ScalarConverter &obj);
 
-    void convert(std::string input) const;
+  void convert(std::string input) const;
 
-    std::string getInput() const;
+  std::string getInput() const;
 
-    class InvalidInput : public std::exception {
-      public:
-        const char *what(void) const throw();
-    };
+  class InvalidInput : public std::exception {
+   public:
+    const char *what(void) const throw();
+  };
 };
 
 #endif
