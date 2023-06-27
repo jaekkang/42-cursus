@@ -2,9 +2,10 @@
 # ProgramName && Files                                                         #
 # **************************************************************************** #
 NAME		=   program
-INC_FILES	=   
+INC_FILES	=   AMateria.hpp Character.hpp Cure.hpp \
+				Ice.hpp ICharacter.hpp IMateriaSource.hpp MateriaSource.hpp
 
-SRC_FILES	=	main.cpp
+SRC_FILES	=	main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
 
 # **************************************************************************** #
 # Directories && Paths                                                         #
