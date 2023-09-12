@@ -81,3 +81,9 @@ void AForm::setGrade(int signGrade, int excuteGrade) {
     *(const_cast<int *>(&this->_signGrade)) = signGrade;
     *(const_cast<int *>(&this->_excuteGrade)) = excuteGrade;
 }
+
+std::ostream &operator<<(std::ostream &os, AForm &p) {
+    os << p.getName() << ", execute grade " << p.getExcuteGrade()
+       << ", sign grade " << p.getSignGrade();
+    return (os);
+}

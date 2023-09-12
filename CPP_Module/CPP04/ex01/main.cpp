@@ -16,7 +16,6 @@ int main() {
     }
     std::cout << std::endl;
     std::cout << "check =>" << newdog->getBrain()->getIdea(99) << std::endl;
-    delete newdog;
     for (int i = 0; i < 10; i++) {
         array[i]->makeSound();
     }

@@ -56,4 +56,6 @@ class AForm {
     void setTarget(std::string target);
 };
 
+std::ostream &operator<<(std::ostream &os, AForm &p);
+
 #endif

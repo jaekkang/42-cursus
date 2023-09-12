@@ -2,12 +2,12 @@
 
 Cat::Cat() {
     setType("Cat");
-    std::cout << getType() << " class constructor called" << std::endl;
     _brain = new Brain();
+    std::cout << "Cat Class constructor called" << std::endl;
 }
 
 Cat::Cat(const Cat &obj) {
-    setType(obj.getType());
+    this->type = obj.getType();
     if (_brain)
         delete _brain;
     _brain = new Brain(*obj.getBrain());
@@ -15,7 +15,7 @@ Cat::Cat(const Cat &obj) {
 
 Cat &Cat::operator=(const Cat &obj) {
     if (this != &obj) {
-        setType(obj.getType());
+        this->type = obj.getType();
     }
     if (_brain)
         delete _brain;
@@ -24,9 +24,8 @@ Cat &Cat::operator=(const Cat &obj) {
 }
 
 Cat::~Cat() {
+    std::cout << "Cat Class destructor called" << std::endl;
     delete _brain;
-    std::cout << getType() << " class destructor called" << std::endl;
-    setType("Animal");
 }
 
 const Brain *Cat::getBrain() const { return _brain; }

@@ -10,7 +10,7 @@ class ADog : public AAnimal {
 
   public:
     ADog();
-    ~ADog();
+    virtual ~ADog();
     ADog(const ADog &obj);
     ADog &operator=(const ADog &obj);
 

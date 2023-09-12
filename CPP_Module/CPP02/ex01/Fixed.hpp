@@ -12,8 +12,8 @@ class Fixed {
   public:
     Fixed(void);
     Fixed(const Fixed &p);
-    explicit Fixed(const int number); // 명시적으로 형변환이 작성되어야 사용가능
-    explicit Fixed(const float fnumber);
+    Fixed(const int number);
+    Fixed(const float fnumber);
     Fixed &operator=(const Fixed &p);
     ~Fixed(void);
 

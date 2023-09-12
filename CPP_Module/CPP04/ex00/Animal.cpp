@@ -1,10 +1,8 @@
 #include "Animal.hpp"
 
-Animal::Animal() : type("Animal") {
-    std::cout << this->type << " class constructor called" << std::endl;
-}
+Animal::Animal() {}
 
-Animal::Animal(const Animal &obj) : type(obj.getType()) {}
+Animal::Animal(const Animal &obj) { this->type = obj.getType(); }
 
 Animal &Animal::operator=(const Animal &obj) {
     if (this != &obj) {
@@ -12,9 +10,7 @@ Animal &Animal::operator=(const Animal &obj) {
     }
     return (*this);
 }
-Animal::~Animal() {
-    std::cout << type << " class destructor called" << std::endl;
-}
+Animal::~Animal() {}
 
 const std::string Animal::getType() const { return (this->type); }
 

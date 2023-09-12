@@ -7,6 +7,8 @@ int main(void) {
         Bureaucrat tmp3("tmp3", 1);
         Form form1("form1", 10, 10);
 
+        std::cout << form1 << std::endl;
+
         tmp1.signForm(&form1);
         tmp3.signForm(&form1);
         std::cout << tmp1 << std::endl;

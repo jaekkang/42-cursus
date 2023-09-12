@@ -1,26 +1,30 @@
-NAME = a.out
 
-CXX = c++
+NAME = CPP01_00
 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CC = c++
+
+FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 
-OBJ = $(SRC:.cpp=.o)
+OBJ = ${SRC:.cpp=.o}
 
-RM = rm -rf
+all : ${NAME}
 
-all : $(NAME)
+.cpp.o :
+	${CC} ${FLAGS} -c $< -o $@
 
-$(NAME) : $(OBJ)
-	$(CXX) $(CXXFLAGS) $^ -o $@
+${NAME} : ${OBJ}
+	${CC} ${FLAGS} $^ -o $@
+
 
 clean :
-	$(RM) $(OBJ)
+	rm -rf ${OBJ}
 
 fclean : clean
-	$(RM) $(NAME)
+	rm -rf ${NAME}
 
 re : fclean all
 
-.PHONY : re fclean clean all
+.PHONY : all clean fclean  re
+	 

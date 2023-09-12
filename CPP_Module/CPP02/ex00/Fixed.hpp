@@ -13,10 +13,9 @@ class Fixed {
     Fixed(const Fixed &p);
     Fixed &operator=(const Fixed &p);
     ~Fixed();
-    // Orthodox Canonical Class Form (OCCP);
 
     int getRawBits(void) const;
-    void setRawBits(int const raw);
+    void setRawBits(const int raw);
 };
 
 #endif

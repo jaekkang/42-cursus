@@ -14,7 +14,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat &obj)
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj) {
     if (this != &obj) {
-        *(const_cast<std::string *>(&this->_name)) = obj.getName(); 
+        *(const_cast<std::string *>(&this->_name)) = obj.getName();
         setGrade(obj.getGrade());
     }
     return (*this);

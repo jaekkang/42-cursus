@@ -1,25 +1,27 @@
 NAME = a.out
 
-CXX = c++
+CC = c++
 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = main.cpp ClapTrap.cpp ScaveTrap.cpp 
 
-OBJ = $(SRC:.cpp=.o)
+OBJ = ${SRC:.cpp=.o}
+
+.cpp.o :
+	${CC} ${FLAGS} -c $<
 
 RM = rm -rf
 
-all : $(NAME)
+all : ${NAME}
 
-$(NAME) : $(OBJ)
-	$(CXX) $(CXXFLAGS) $^ -o $@
+${NAME} : ${OBJ}
+	${CC} ${FLAGS} $^ -o $@
 
 clean :
-	$(RM) $(OBJ)
-
+	${RM} ${OBJ}
 fclean : clean
-	$(RM) $(NAME)
+	${RM} ${NAME}
 
 re : fclean all
 

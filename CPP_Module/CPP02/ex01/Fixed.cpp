@@ -20,8 +20,9 @@ Fixed::Fixed(const Fixed &p) {
 
 Fixed &Fixed::operator=(const Fixed &p) {
     std::cout << "Copy assignment operator called" << std::endl;
-    if (this != &p)
-        _fixed = p.getRawBits();
+    if (this != &p) {
+        this->setRawBits(p.getRawBits());
+    }
     return *this;
 }
 
@@ -34,7 +35,7 @@ void Fixed::setRawBits(const int raw) { this->_fixed = raw; }
 int Fixed::toInt(void) const { return (this->_fixed >> this->_literal); }
 
 float Fixed::toFloat(void) const {
-    return static_cast<float>(this->_fixed) / (1 << this->_literal);
+    return (static_cast<float>(this->_fixed) / (1 << this->_literal));
 }
 
 std::ostream &operator<<(std::ostream &os, const Fixed &p) {

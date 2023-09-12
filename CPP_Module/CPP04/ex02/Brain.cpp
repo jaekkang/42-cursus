@@ -1,7 +1,7 @@
 #include "Brain.hpp"
 
 Brain::Brain() {
-    std::cout << "Brain class constructor called" << std::endl;
+    std::cout << "Brain Class constructor called" << std::endl;
 
     for (int i = 0; i < 100; ++i) {
         std::stringstream ss;
@@ -25,7 +25,7 @@ Brain &Brain::operator=(const Brain &obj) {
     return (*this);
 }
 
-Brain::~Brain() { std::cout << "Brain class destructor called" << std::endl; }
+Brain::~Brain() { std::cout << "Brain Class destructor called" << std::endl; }
 
 const std::string *Brain::getIdeas() const { return (this->_ideas); }
 

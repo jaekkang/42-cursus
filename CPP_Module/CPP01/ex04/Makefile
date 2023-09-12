@@ -1,25 +1,27 @@
-NAME = a.out
 
-CXX = c++
+NAME = replace
 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CC = c++
+
+FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = main.cpp
 
-OBJ = $(SRC:.cpp=.o)
+OBJ = ${SRC:.cpp=.o}
 
 RM = rm -rf
 
-all : $(NAME)
+all : ${NAME}
 
-$(NAME) : $(OBJ)
-	$(CXX) $(CXXFLAGS) $^ -o $@
+${NAME} : ${OBJ}
+	${CC} ${FLAGS} $^ -o $@
 
 clean :
-	$(RM) $(OBJ)
+	${RM} ${OBJ}
+	${RM} *.replace
 
 fclean : clean
-	$(RM) $(NAME)
+	${RM} ${NAME}
 
 re : fclean all
 

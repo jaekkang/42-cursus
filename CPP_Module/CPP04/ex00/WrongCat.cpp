@@ -1,19 +1,13 @@
 #include "WrongCat.hpp"
 
-WrongCat::WrongCat() {
-    setType("WrongCat");
-    std::cout << getType() << " class constructor called" << std::endl;
-}
+WrongCat::WrongCat() { setType("Cat"); }
 
-WrongCat::WrongCat(const WrongCat &obj) { setType(obj.getType()); }
+WrongCat::WrongCat(const WrongCat &obj) { _type = obj.getType(); }
 
 WrongCat &WrongCat::operator=(const WrongCat &obj) {
     if (this != &obj) {
-        setType(obj.getType());
+        _type = obj.getType();
     }
     return (*this);
 }
-WrongCat::~WrongCat() {
-    std::cout << getType() << " class destructor called" << std::endl;
-    setType("WrongAnimal");
-}
+WrongCat::~WrongCat() {}

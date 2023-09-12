@@ -11,9 +11,12 @@ ClapTrap::ClapTrap(std::string name)
               << std::endl;
 }
 
-ClapTrap::ClapTrap(const ClapTrap &c)
-    : _name(c.getName()), _hitPoints(c.getHitPoint()),
-      _energyPoints(c.getEnergyPoint()), _attackDamage(c.getAttackDamage()) {}
+ClapTrap::ClapTrap(const ClapTrap &c) {
+    this->_name = c.getName();
+    this->_hitPoints = c.getHitPoint();
+    this->_energyPoints = c.getEnergyPoint();
+    this->_attackDamage = c.getAttackDamage();
+}
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &c) {
     if (this != &c) {
@@ -31,12 +34,12 @@ ClapTrap::~ClapTrap() {
 
 void ClapTrap::attack(const std::string &target) {
     if (this->_hitPoints == 0) {
-        std::cout << "ClapTrap " << this->_name << " can't attacks " << target
-                  << ", because No more hit points" << std::endl;
+        std::cout << "ClapTrap " << this->getName() << " can't attacks "
+                  << target << ", because No more hit points" << std::endl;
         return;
     }
-    std::cout << "ClapTrap " << this->_name << " attacks " << target
-              << ", causing " << this->_attackDamage << " points of damage!"
+    std::cout << "ClapTrap " << this->getName() << " attacks " << target
+              << ", causing " << this->getAttackDamage() << " points of damage!"
               << std::endl;
     --this->_hitPoints;
     std::cout << "ClapTrap " << this->_hitPoints << " points left" << std::endl;

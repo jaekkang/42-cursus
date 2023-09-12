@@ -3,6 +3,7 @@
 Fixed::Fixed() : _fixed(0) {}
 
 Fixed::Fixed(const int number) : _fixed(number << this->_literal) {}
+
 Fixed::Fixed(const float fnumber)
     : _fixed(static_cast<float>(roundf(fnumber * (1 << this->_literal)))) {}
 
@@ -10,7 +11,7 @@ Fixed::Fixed(const Fixed &p) { *this = p; }
 
 Fixed::~Fixed() {}
 
-const int Fixed::getRawBits() const { return (this->_fixed); }
+int Fixed::getRawBits() const { return (this->_fixed); }
 
 void Fixed::setRawBits(const int raw) { this->_fixed = raw; }
 
@@ -68,27 +69,27 @@ bool Fixed::operator!=(const Fixed &p) const {
     return (this->toFloat() != p.toFloat());
 }
 
-Fixed Fixed::operator++(void) {
-    this->_fixed++;
+Fixed &Fixed::operator++(void) {
+    ++this->_fixed;
     return (*this);
 }
 
 Fixed Fixed::operator++(int) {
     Fixed ret = *this;
 
-    this->_fixed++;
+    ++this->_fixed;
     return (ret);
 }
 
-Fixed Fixed::operator--(void) {
-    this->_fixed--;
+Fixed &Fixed::operator--(void) {
+    --this->_fixed;
     return (*this);
 }
 
 Fixed Fixed::operator--(int) {
     Fixed ret = *this;
 
-    this->_fixed--;
+    --this->_fixed;
     return (ret);
 }
 

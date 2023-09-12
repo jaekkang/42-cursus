@@ -38,4 +38,6 @@ class Form {
     void setSigned(bool isSigned);
 };
 
+std::ostream &operator<<(std::ostream &os, Form &p);
+
 #endif

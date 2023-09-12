@@ -4,13 +4,16 @@ Fixed::Fixed() : _fixed(0) {
     std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed &p) : _fixed(p._fixed) {
+Fixed::Fixed(const Fixed &p) {
     std::cout << "Copy constructor called" << std::endl;
+    *this = p;
 }
 
 Fixed &Fixed::operator=(const Fixed &p) {
     std::cout << "Copy assignment operator called" << std::endl;
-    this->_fixed = p.getRawBits();
+    if (this != &p) {
+        this->setRawBits(p.getRawBits());
+    }
     return (*this);
 }
 

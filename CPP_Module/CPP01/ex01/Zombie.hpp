@@ -2,7 +2,7 @@
 #define ZOMEBIE_HPP
 
 #include <iostream>
-
+#include <sstream>
 class Zombie {
   private:
     std::string _name;
@@ -12,8 +12,9 @@ class Zombie {
     Zombie(std::string name);
     ~Zombie();
 
-    void announce(void);
+    std::string getName(void);
     void setName(std::string name);
+    void announce(void);
 };
 
 Zombie *zombieHorde(int N, std::string name);

@@ -1,18 +1,24 @@
 
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook() { this->_idx = 0; }
+PhoneBook::PhoneBook() {}
 
-void PhoneBook::add() {
-    this->_data[this->_idx % 8].addContact();
-    this->_idx += 1;
+PhoneBook::~PhoneBook() {}
+
+void PhoneBook::Add() {
+    this->get_data()[this->get_idx() % 8].AddContact();
+    this->add_idx();
 }
 
-int PhoneBook::getIdx() { return (this->_idx); }
+void PhoneBook::add_idx() { this->_idx += 1; }
 
-Contact *PhoneBook::getData() { return (this->_data); }
+void PhoneBook::set_idx() { this->_idx = 0; }
 
-void PhoneBook::search() {
+int PhoneBook::get_idx() { return (this->_idx); }
+
+Contact *PhoneBook::get_data() { return (this->data); }
+
+void PhoneBook::Search() {
     int number;
 
     std::cout << "|" << std::setw(10) << "Number";
@@ -22,13 +28,13 @@ void PhoneBook::search() {
               << "|" << std::endl;
     for (int i = 1; i < 9; i++) {
         std::cout << "|" << std::setw(10) << std::to_string(i);
-        this->_data[i - 1].printContact();
+        this->get_data()[i - 1].PrintContact();
     }
     std::cout << "Enter data number If you want to see detailed data"
               << std::endl;
     std::cin >> number;
     if (number < 9 && number > 0)
-        this->_data[number - 1].printDetail();
+        this->get_data()[number - 1].PrintDetail();
     else {
         std::cout << "Error! invalid input" << std::endl;
         std::cin.clear();
@@ -41,6 +47,7 @@ int main(void) {
     PhoneBook book;
     std::string cmd;
 
+    book.set_idx();
     while (1) {
         if (std::cin.eof()) {
             exit(1);
@@ -51,9 +58,9 @@ int main(void) {
         if (cmd == "EXIT")
             break;
         else if (cmd == "ADD")
-            book.add();
+            book.Add();
         else if (cmd == "SEARCH")
-            book.search();
+            book.Search();
     }
     return (0);
 }
