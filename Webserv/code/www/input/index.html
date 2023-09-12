@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>파일 업로드</title>
+</head>
+
+<body>
+
+<form enctype="multipart/form-data" id="uploadForm">
+    <label for="file">파일 선택:</label>
+    <input type="file" name="file" id="file" onchange="updateFileName()">
+    <input type="hidden" name="filename" id="filename">
+    <input type="button" value="업로드" onclick="uploadFile()" name="submit">
+</form>
+
+<script>
+    function uploadFile() {
+        const fileInput = document.getElementById('file');
+        if (fileInput.files.length === 0) {
+            alert('파일을 선택해주세요.');
+            return;
+        }
+
+        const fileName = document.getElementById('filename').value;
+
+        var file = fileInput.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function (event) {
+            var fileContent = event.target.result;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('PUT', `${window.location.origin}/input/${fileName}`, true);
+            xhr.setRequestHeader('Content-Type', 'application/octet-stream');
+            xhr.onload = function() {
+                if(xhr.status === 200) {
+                    alert('업로드 성공!');
+                } else {
+                    alert('업로드 실패: ' + xhr.responseText);
+                }
+            };
+            xhr.send(fileContent);
+        };
+
+        reader.readAsArrayBuffer(file);
+    }
+
+    function updateFileName() {
+        const fileInput = document.getElementById('file');
+        if (fileInput.files.length > 0) {
+            const fileName = fileInput.files[0].name;
+            document.getElementById('filename').value = fileName;
+        }
+    }
+</script>
+
+</body>
+</html>
