@@ -1,10 +1,10 @@
 # **************************************************************************** #
 # ProgramName && Files                                                         #
 # **************************************************************************** #
-NAME		=   program
-INC_FILES	=   MutantStack.hpp
+NAME		=   btc
+INC_FILES	=   BitcoinExchange.hpp
 
-SRC_FILES	=	main.cpp
+SRC_FILES	=	main.cpp BitcoinExchange.cpp
 
 # **************************************************************************** #
 # Directories && Paths                                                         #
