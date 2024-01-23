@@ -106,10 +106,10 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/juyojeon/data/mysql
+      device: /home/jaekkang/data/mysql
   wp:
     driver_opts:
       type: none
       o: bind
-      device: /home/juyojeon/data/www
+      device: /home/jaekkang/data/www
   mine:
