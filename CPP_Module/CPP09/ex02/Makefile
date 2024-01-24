@@ -1,10 +1,10 @@
 # **************************************************************************** #
 # ProgramName && Files                                                         #
 # **************************************************************************** #
-NAME		=   program
-INC_FILES	=   MutantStack.hpp
+NAME		=   PmergeMe
+INC_FILES	=   PmergeMe.hpp
 
-SRC_FILES	=	main.cpp
+SRC_FILES	=	main.cpp PmergeMe.cpp
 
 # **************************************************************************** #
 # Directories && Paths                                                         #
