@@ -1,10 +1,10 @@
 # **************************************************************************** #
 # ProgramName && Files                                                         #
 # **************************************************************************** #
-NAME		=   program
-INC_FILES	=   MutantStack.hpp
+NAME		=   RPN
+INC_FILES	=   RPN.hpp
 
-SRC_FILES	=	main.cpp
+SRC_FILES	=	main.cpp RPN.cpp
 
 # **************************************************************************** #
 # Directories && Paths                                                         #
