@@ -5,7 +5,6 @@
 #include <deque>
 #include <exception>
 #include <iostream>
-#include <list>
 #include <string>
 #include <vector>
 
@@ -54,16 +53,17 @@ class PmergeMe {
   }
 
   template <typename T>
-  void fordjohnsonRecursion(T &list, size_t size) {
+  void recursion(T &list, size_t size) {
     if (size <= 1) return;
+
     size_t mid = size / 2;
     T left;
     T right;
 
     for (size_t i = 0; i < mid; i++) left.push_back(list[i]);
     for (size_t i = mid; i < size; i++) right.push_back(list[i]);
-    fordjohnsonRecursion(left, mid);
-    fordjohnsonRecursion(right, size - mid);
+    recursion(left, mid);
+    recursion(right, size - mid);
 
     merge(list, left, right);
   };
@@ -71,7 +71,7 @@ class PmergeMe {
   template <typename T>
   void sortAndCheckTime(T &list, std::string listType) {
     _checkTime = clock();
-    fordjohnsonRecursion(list, list.size());
+    recursion(list, list.size());
     _checkTime = clock() - _checkTime;
 
     this->_times.push_back(std::make_pair(listType, _checkTime));

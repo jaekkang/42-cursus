@@ -9,6 +9,10 @@ PmergeMe::PmergeMe(const PmergeMe &obj) {
 
 PmergeMe &PmergeMe::operator=(const PmergeMe &obj) {
   if (this != &obj) {
+    this->_v = obj._v;
+    this->_d = obj._d;
+    this->_base = obj._base;
+    this->_times = obj._times;
   }
   return *this;
 }
@@ -24,7 +28,7 @@ void PmergeMe::printLine(std::string order) {
   std::cout << std::endl;
 }
 
-void checkDigitInput(const char *input) {
+void checkInput(const char *input) {
   long tmp = std::atol(input);
 
   if (tmp > 2147483648) {
@@ -42,17 +46,33 @@ void checkDigitInput(const char *input) {
   }
 }
 
+// int PmergeMe::jacobsthal(int n) {
+//   if (n == 0) return 0;
+//   if (n == 1) return 1;
+//   return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
+// }
+
+// void PmergeMe::MakeJacobArr() {
+//   size_t remainSize;
+//   size_t jacobsthalIdx;
+//   int index;
+
+//   remainSize = this->_base.size();
+//   index = 3;
+
+//   while ((jacobsthalIdx = this->jacobsthal(index)) < remainSize) {
+//     this->jacobArr.push_back(jacobsthalIdx);
+//     index++;
+//   }
+// }
+
 int PmergeMe::setContainers(const char **argv) {
-  const char *arg;
-
   for (int i = 1; argv[i]; i++) {
-    arg = argv[i];
+    checkInput(argv[i]);
 
-    checkDigitInput(arg);
-
-    this->_v.push_back(std::atoi(arg));
-    this->_d.push_back(std::atoi(arg));
-    this->_base.push_back(std::atoi(arg));
+    this->_v.push_back(std::atoi(argv[i]));
+    this->_d.push_back(std::atoi(argv[i]));
+    this->_base.push_back(std::atoi(argv[i]));
   }
   return 0;
 }
