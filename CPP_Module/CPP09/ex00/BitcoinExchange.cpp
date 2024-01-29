@@ -268,7 +268,7 @@ int BitcoinExchange::checkValue(const std::string &str) {
 }
 
 void BitcoinExchange::printBit(std::string date, float n) {
-  std::map<std::string, float>::const_iterator iter;
+  std::map<std::string, float>::iterator iter;
   float res;
 
   res = 0;

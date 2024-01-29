@@ -4,7 +4,7 @@ int main(int ac, char** av) {
   BitcoinExchange b;
 
   if (ac != 2) {
-    BitcoinExchange::Error("Usage: ./btc [file]");
+    BitcoinExchange::Error("could not open file.");
     exit(0);
   }
 
