@@ -1,81 +1,61 @@
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
 
+#include <algorithm>
 #include <ctime>
 #include <deque>
 #include <exception>
 #include <iostream>
-#include <string>
 #include <vector>
+
+typedef std::vector<int> vector;
+typedef std::deque<int> deque;
+typedef vector::iterator vIter;
+typedef deque::iterator dIter;
 
 class PmergeMe {
  private:
+  // variables
   std::vector<int> _base;
-  std::vector<int> _v;
-  std::deque<int> _d;
+  vector _v;
+  deque _d;
 
-  clock_t _checkTime;
+  clock_t _checkVectorTime;
+  clock_t _checkDequeTime;
 
-  std::vector<std::pair<std::string, clock_t> > _times;
+  int _jacobsthalIndex;
+  int _jacobsthalNum[30];
+  int _numOfInsert;
 
+  // utils
   void printLine(std::string order);
-
+  void printTime(clock_t time, std::string type);
+  void setJacobsthalNum();
   int setContainers(const char **av);
+  int getNextIndex(int index);
 
-  template <typename T>
-  void merge(T &list, T &left, T &right) {
-    size_t i = 0, j = 0, k = 0;
-    size_t leftSize = left.size();
-    size_t rightSize = right.size();
+  // running methods
+  void runVector();
+  void runDeque();
 
-    while (i < leftSize && j < rightSize) {
-      if (left[i] <= right[j]) {
-        list[k] = left[i];
-        ++i;
-      } else {
-        list[k] = right[j];
-        ++j;
-      }
-      ++k;
-    }
+  void comparePairVector(int num, int size);
+  void comparePairDeque(int num, int size);
 
-    while (i < leftSize) {
-      list[k] = left[i];
-      ++i;
-      ++k;
-    }
+  void binarySearchInsertVector(vector &mainChain, vector &subChain, size_t idx,
+                                size_t size);
+  void binarySearchInsertDeque(deque &mainChain, deque &subChain, size_t idx,
+                               size_t size);
 
-    while (j < rightSize) {
-      list[k] = right[j];
-      ++j;
-      ++k;
-    }
-  }
+  void recursionVector(size_t numOfElement, size_t sizeOfList);
+  void recursionDeque(size_t numOfElement, size_t sizeOfList);
 
-  template <typename T>
-  void recursion(T &list, size_t size) {
-    if (size <= 1) return;
+  void insertionVector(size_t numOfElement, size_t sizeOfList);
+  void insertionDeque(size_t numOfElement, size_t sizeOfList);
 
-    size_t mid = size / 2;
-    T left;
-    T right;
+  void setChainsVector(int num, int size, vector &main, vector &sub);
+  void setChainsDeque(int num, int size, deque &main, deque &sub);
 
-    for (size_t i = 0; i < mid; i++) left.push_back(list[i]);
-    for (size_t i = mid; i < size; i++) right.push_back(list[i]);
-    recursion(left, mid);
-    recursion(right, size - mid);
-
-    merge(list, left, right);
-  };
-
-  template <typename T>
-  void sortAndCheckTime(T &list, std::string listType) {
-    _checkTime = clock();
-    recursion(list, list.size());
-    _checkTime = clock() - _checkTime;
-
-    this->_times.push_back(std::make_pair(listType, _checkTime));
-  };
+  // OCCF methods not need methods lock
   PmergeMe(const PmergeMe &obj);
   PmergeMe &operator=(const PmergeMe &obj);
 

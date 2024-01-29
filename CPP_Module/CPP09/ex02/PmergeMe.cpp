@@ -7,12 +7,19 @@ PmergeMe::PmergeMe(const PmergeMe &obj) {
   return;
 }
 
+void PmergeMe::setJacobsthalNum() {
+  _jacobsthalNum[0] = 1;
+  _jacobsthalNum[1] = 3;
+
+  for (int i = 2; i < 30; ++i)
+    _jacobsthalNum[i] = _jacobsthalNum[i - 1] + 2 * _jacobsthalNum[i - 2];
+}
+
 PmergeMe &PmergeMe::operator=(const PmergeMe &obj) {
   if (this != &obj) {
     this->_v = obj._v;
     this->_d = obj._d;
     this->_base = obj._base;
-    this->_times = obj._times;
   }
   return *this;
 }
@@ -46,26 +53,6 @@ void checkInput(const char *input) {
   }
 }
 
-// int PmergeMe::jacobsthal(int n) {
-//   if (n == 0) return 0;
-//   if (n == 1) return 1;
-//   return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
-// }
-
-// void PmergeMe::MakeJacobArr() {
-//   size_t remainSize;
-//   size_t jacobsthalIdx;
-//   int index;
-
-//   remainSize = this->_base.size();
-//   index = 3;
-
-//   while ((jacobsthalIdx = this->jacobsthal(index)) < remainSize) {
-//     this->jacobArr.push_back(jacobsthalIdx);
-//     index++;
-//   }
-// }
-
 int PmergeMe::setContainers(const char **argv) {
   for (int i = 1; argv[i]; i++) {
     checkInput(argv[i]);
@@ -77,20 +64,191 @@ int PmergeMe::setContainers(const char **argv) {
   return 0;
 }
 
+void PmergeMe::comparePairVector(int num, int size) {
+  vIter iter = this->_v.begin();
+
+  for (int i = 0; i <= num; i += 2) {
+    vIter first = iter + i * size;
+    vIter second = iter + (i + 1) * size;
+
+    if (*first <= *second) std::swap_ranges(first, second, second);
+  }
+}
+
+void PmergeMe::comparePairDeque(int num, int size) {
+  dIter iter = this->_d.begin();
+
+  for (int i = 0; i <= num; i += 2) {
+    dIter first = iter + i * size;
+    dIter second = iter + (i + 1) * size;
+
+    if (*first <= *second) std::swap_ranges(first, second, second);
+  }
+}
+
+void PmergeMe::setChainsVector(int num, int size, vector &main, vector &sub) {
+  vIter it = _v.begin();
+
+  for (int i = 0; i < num; ++i) {
+    if (i == num - 1 || i % 2 == 1)
+      sub.insert(sub.end(), it + i * size, it + (i + 1) * size);
+    else if (i % 2 == 0)
+      main.insert(main.end(), it + i * size, it + (i + 1) * size);
+  }
+}
+
+void PmergeMe::setChainsDeque(int num, int size, deque &main, deque &sub) {
+  dIter it = _d.begin();
+
+  for (int i = 0; i < num; ++i) {
+    if (i == num - 1 || i % 2 == 1)
+      sub.insert(sub.end(), it + i * size, it + (i + 1) * size);
+    else if (i % 2 == 0)
+      main.insert(main.end(), it + i * size, it + (i + 1) * size);
+  }
+}
+
+int PmergeMe::getNextIndex(int index) {
+  if (index == 0) return 1;
+  if (index == 1) return 3;
+  if (index - 1 == _jacobsthalNum[_jacobsthalIndex]) {
+    ++_jacobsthalIndex;
+    return _jacobsthalNum[_jacobsthalIndex + 1];
+  }
+  return index - 1;
+}
+
+void PmergeMe::binarySearchInsertVector(vector &mainChain, vector &subChain,
+                                        size_t idx, size_t size) {
+  int left = 0;
+  int right = idx + _numOfInsert;
+  vIter subIt = subChain.begin() + idx * size;
+  vIter mainIt = mainChain.begin();
+  if (idx == 0) {
+    mainChain.insert(mainIt, subIt, subIt + size);
+    return;
+  }
+
+  while (left <= right) {
+    int mid = left + (right - left) / 2;
+    if (mainChain[mid * size] < *subIt) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+
+  mainChain.insert(mainIt + left * size, subIt, subIt + size);
+  ++_numOfInsert;
+}
+
+void PmergeMe::binarySearchInsertDeque(deque &mainChain, deque &subChain,
+                                       size_t idx, size_t size) {
+  int left = 0;
+  int right = idx + _numOfInsert;
+  dIter subIt = subChain.begin() + idx * size;
+  dIter mainIt = mainChain.begin();
+  if (idx == 0) {
+    mainChain.insert(mainIt, subIt, subIt + size);
+    return;
+  }
+
+  while (left <= right) {
+    int mid = left + (right - left) / 2;
+    if (mainChain[mid * size] < *subIt) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+
+  mainChain.insert(mainIt + left * size, subIt, subIt + size);
+  ++_numOfInsert;
+}
+
+void PmergeMe::insertionVector(size_t num, size_t size) {
+  vector main;
+  vector sub;
+  int idx = 0;
+  _jacobsthalIndex = 0;
+  _numOfInsert = 0;
+  int subChainNum = num / 2 + num % 2;
+
+  setChainsVector(num, size, main, sub);
+  for (int i = 0; i < subChainNum; ++i) {
+    idx = getNextIndex(idx);
+    if (idx >= subChainNum) idx = subChainNum;
+    binarySearchInsertVector(main, sub, idx - 1, size);
+  }
+  for (size_t i = 0; i < main.size(); ++i) {
+    _v[i] = main[i];
+  }
+}
+
+void PmergeMe::insertionDeque(size_t num, size_t size) {
+  deque main;
+  deque sub;
+  int idx = 0;
+  _jacobsthalIndex = 0;
+  _numOfInsert = 0;
+  int subChainNum = num / 2 + num % 2;
+
+  setChainsDeque(num, size, main, sub);
+  for (int i = 0; i < subChainNum; ++i) {
+    idx = getNextIndex(idx);
+    if (idx >= subChainNum) idx = subChainNum;
+    binarySearchInsertDeque(main, sub, idx - 1, size);
+  }
+  for (size_t i = 0; i < main.size(); ++i) {
+    _d[i] = main[i];
+  }
+}
+
+void PmergeMe::recursionVector(size_t numOfElement, size_t sizeOfPair) {
+  if (numOfElement == 1) return;
+
+  comparePairVector(numOfElement, sizeOfPair);
+  recursionVector(numOfElement / 2, sizeOfPair * 2);
+  insertionVector(numOfElement, sizeOfPair);
+}
+
+void PmergeMe::recursionDeque(size_t numOfElement, size_t sizeOfPair) {
+  if (numOfElement == 1) return;
+
+  comparePairDeque(numOfElement, sizeOfPair);
+  recursionDeque(numOfElement / 2, sizeOfPair * 2);
+  insertionDeque(numOfElement, sizeOfPair);
+}
+
+void PmergeMe::printTime(clock_t time, std::string type) {
+  std::cout << "Time to process a range of " << _base.size()
+            << " elements with std::" << type << " : " << time << " us"
+            << std::endl;
+}
+
+void PmergeMe::runVector() {
+  _checkVectorTime = clock();
+  recursionVector(_v.size(), 1);
+  _checkVectorTime = clock() - _checkVectorTime;
+}
+
+void PmergeMe::runDeque() {
+  _checkDequeTime = clock();
+  recursionVector(_v.size(), 1);
+  _checkDequeTime = clock() - _checkDequeTime;
+}
+
 int PmergeMe::run(char **av) {
   try {
     setContainers((const char **)av);
-
+    setJacobsthalNum();
     printLine("Before: ");
-    sortAndCheckTime(this->_v, "vector");
-    sortAndCheckTime(this->_d, "deque");
+    runVector();
+    runDeque();
     printLine("After: ");
+    printTime(_checkVectorTime, "vector");
+    printTime(_checkDequeTime, "deque");
 
-    for (size_t i = 0; i < this->_times.size(); i++) {
-      std::cout << "Time to process a range of " << _base.size()
-                << " elements with std::" << _times[i].first << " : "
-                << _times[i].second << " us" << std::endl;
-    }
   } catch (std::exception &e) {
     std::cerr << e.what() << std::endl;
   }
