@@ -242,8 +242,8 @@ int PmergeMe::run(char **av) {
   try {
     setContainers((const char **)av);
     setJacobsthalNum();
-    printLine("Before: ");
     runVector();
+    printLine("Before: ");
     runDeque();
     printLine("After: ");
     printTime(_checkVectorTime, "vector");
